@@ -1,0 +1,8 @@
+################################################
+# Crop Checker configuration file              #
+#                                              #
+# Use a hoe to check growth progress of crops. #
+# Author: steve4744                            #
+################################################
+# Check for new version
+Check_For_Update: true

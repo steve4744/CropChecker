@@ -3,10 +3,12 @@ package io.github.steve4744.cropchecker;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 
 public class CropChecker extends JavaPlugin {
 	
+	private String version;
 	private static CropChecker instance;
 	private ScoreboardManager scoreboardManager;
 
@@ -14,8 +16,12 @@ public class CropChecker extends JavaPlugin {
 	public void onEnable() {
 
 		instance = this;
+		this.saveDefaultConfig();
+		version = this.getDescription().getVersion();
 		PluginManager pm = Bukkit.getPluginManager();
-		pm.registerEvents(new CropListener(), this);		
+		pm.registerEvents(new CropListener(), this);
+		
+		checkForUpdate();
 	}
 		
 	@Override
@@ -33,5 +39,24 @@ public class CropChecker extends JavaPlugin {
         }
         return getPlugin().scoreboardManager;
     }
+	
+	private void checkForUpdate() {
+		if (!getConfig().getBoolean("Check_For_Update", true)) {
+			return;
+		}
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				String latestVersion = VersionChecker.getVersion();
+				if (latestVersion == "error") {
+					getLogger().info("Error attempting to check for new version. Please report it here: https://www.spigotmc.org/threads/leather-smelter.xxxxx/");
+				} else {
+					if (!version.equals(latestVersion)) {
+						getLogger().info("New version " + latestVersion + " available on Spigot: https://www.spigotmc.org/resources/leather-smelter.xxxxx/");
+					}
+				}
+			}
+		}.runTaskLaterAsynchronously(this, 20L);
+	}
 
 }
