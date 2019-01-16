@@ -1,6 +1,6 @@
-![alt text](https://www.spigotmc.org/attachments/2019-01-16_09-58-07-png.398269/ "CropChecker by steve4744")
-
 # CropChecker
+
+![alt text](https://www.spigotmc.org/attachments/2019-01-16_09-58-07-png.398269/ "CropChecker by steve4744")
 
 Crop Checker is a simple utility plugin for Spigot/Minecraft 1.13+. Well suited to Survival and Skyblock servers, it will allow players to display the growth status of any of their crops.
 
