@@ -38,8 +38,8 @@ public class ScoreboardManager {
 		resetScoreboard(player);
 		
 		Objective o = scoreboard.getObjective(DisplaySlot.SIDEBAR);
-		o.setDisplayName(ChatColor.GOLD.toString() + ChatColor.BOLD + crop.name());
-		o.getScore("Growth Percentage: ").setScore(growth);
+		o.setDisplayName(ChatColor.GOLD.toString() + ChatColor.BOLD + crop.name() + ChatColor.WHITE + "     %");
+		o.getScore("Growth:").setScore(growth);
 		player.setScoreboard(scoreboard);
 		
 		BukkitTask task = new BukkitRunnable() {
