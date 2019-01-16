@@ -18,6 +18,7 @@ public class CropChecker extends JavaPlugin {
 		instance = this;
 		this.saveDefaultConfig();
 		version = this.getDescription().getVersion();
+		
 		PluginManager pm = Bukkit.getPluginManager();
 		pm.registerEvents(new CropListener(), this);
 		
@@ -49,10 +50,10 @@ public class CropChecker extends JavaPlugin {
 			public void run() {
 				String latestVersion = VersionChecker.getVersion();
 				if (latestVersion == "error") {
-					getLogger().info("Error attempting to check for new version. Please report it here: https://www.spigotmc.org/threads/leather-smelter.xxxxx/");
+					getLogger().info("Error attempting to check for new version. Please report it here: https://www.spigotmc.org/threads/cropchecker-check-crop-growth-progress.355898/");
 				} else {
 					if (!version.equals(latestVersion)) {
-						getLogger().info("New version " + latestVersion + " available on Spigot: https://www.spigotmc.org/resources/leather-smelter.xxxxx/");
+						getLogger().info("New version " + latestVersion + " available on Spigot: https://www.spigotmc.org/resources/cropchecker-check-crop-growth-progress.64044/");
 					}
 				}
 			}
