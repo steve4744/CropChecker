@@ -29,7 +29,7 @@ public class CropListener implements Listener {
 			
 			Ageable age = (Ageable) bdata;
 			int growth = age.getAge() * 100 / age.getMaximumAge();
-
+			
 			CropChecker.getScoreboardManager().showProgress(player, crop, growth);
 			event.setCancelled(true);
 		}

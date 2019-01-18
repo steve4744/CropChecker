@@ -5,12 +5,15 @@ import java.util.HashMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
+
+import io.github.steve4744.cropchecker.configuration.Configuration;
 
 public class ScoreboardManager {
 
@@ -38,8 +41,8 @@ public class ScoreboardManager {
 		resetScoreboard(player);
 		
 		Objective o = scoreboard.getObjective(DisplaySlot.SIDEBAR);
-		o.setDisplayName(ChatColor.GOLD.toString() + ChatColor.BOLD + crop.name() + ChatColor.WHITE + "     %");
-		o.getScore("Growth:").setScore(growth);
+		o.setDisplayName(ChatColor.GOLD.toString() + ChatColor.BOLD + getDisplayName(crop) + ChatColor.WHITE + getPadding(crop) + "%");
+		o.getScore(getText() + ":").setScore(growth);
 		player.setScoreboard(scoreboard);
 		
 		BukkitTask task = new BukkitRunnable() {
@@ -73,6 +76,37 @@ public class ScoreboardManager {
 			task.cancel();
 			taskMap.remove(player.getName());
 		}
+	}
+	
+	private String getDisplayName(Material crop) {
+		FileConfiguration cfg = Configuration.getStringData();
+		String cropname = crop.name().toLowerCase();
+		return cfg.getString("crops." + cropname, crop.name());	
+	}
+	
+	private String getText() {
+		FileConfiguration cfg = Configuration.getStringData();
+		return cfg.getString("text.growth", "Growth");	
+	}
+	
+	private String getPadding(Material crop) {
+		StringBuilder pad = new StringBuilder();
+		int padlen = 5;
+		String cropname = getDisplayName(crop);
+		
+		//we need extra padding if crop name is shorter than the text
+		if (cropname.length() < getText().length()) {
+			int mismatch = getText().length() - cropname.length();
+			if (mismatch >= 6) {
+				padlen = 12;
+			} else if (mismatch >= 4) {
+				padlen = 8;
+			} 
+		}
+		for (int i = 0; i < padlen; i++) {
+			pad.append(" ");
+		}
+		return pad.toString();
 	}
 
 }

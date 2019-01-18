@@ -5,6 +5,8 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import io.github.steve4744.cropchecker.configuration.Configuration;
+
 
 public class CropChecker extends JavaPlugin {
 	
@@ -22,6 +24,8 @@ public class CropChecker extends JavaPlugin {
 		PluginManager pm = Bukkit.getPluginManager();
 		pm.registerEvents(new CropListener(), this);
 		
+		new Configuration(this);
+		
 		checkForUpdate();
 	}
 		
@@ -31,7 +35,7 @@ public class CropChecker extends JavaPlugin {
 	}
 	
 	public static CropChecker getPlugin() {
-        return instance;
+		return instance;
     }
 	
 	public static ScoreboardManager getScoreboardManager() {
