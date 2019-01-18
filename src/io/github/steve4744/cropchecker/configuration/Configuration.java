@@ -18,25 +18,25 @@ public class Configuration {
 		stringFile = new File(dataFolder, "strings.yml");
 		stringData = new YamlConfiguration();
 
-        if (!stringFile.exists()) {
-        	try {
-            	stringFile.createNewFile();
-                plugin.getLogger().info("Created strings.yml");
-                saveStrings();
-            } catch (Exception ex) {
-            	ex.printStackTrace();
-                plugin.getLogger().info("Failed!");
-            }
-        }
+		if (!stringFile.exists()) {
+			try {
+				stringFile.createNewFile();
+				plugin.getLogger().info("Created strings.yml");
+				saveStrings();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				plugin.getLogger().info("Failed!");
+			}
+		}
 
-        try {
-        	stringData.load(stringFile);
+		try {
+			stringData.load(stringFile);
 
-        } catch (Exception ex) {
-        	plugin.getLogger().info("Failed loading config: " + ex.getMessage());
-            ex.printStackTrace();
-        }
-        saveStrings();
+		} catch (Exception ex) {
+			plugin.getLogger().info("Failed loading config: " + ex.getMessage());
+			ex.printStackTrace();
+		}
+		saveStrings();
 	}
 
 	public static FileConfiguration getStringData() {
@@ -45,18 +45,18 @@ public class Configuration {
 
 	public void saveStrings() {
 		try{
-			stringData.addDefault("crops.wheat", "WHEAT");
-			stringData.addDefault("crops.carrots", "CARROTS");
-			stringData.addDefault("crops.potatoes", "POTATOES");
-			stringData.addDefault("crops.beetroots", "BEETROOTS");
-			stringData.addDefault("crops.melon_stem", "MELON_STEM");
-			stringData.addDefault("crops.pumpkin_stem", "PUMPKIN_STEM");
-			stringData.addDefault("crops.kelp", "KELP");
-			stringData.addDefault("crops.cocoa", "COCOA");
-			stringData.addDefault("crops.cactus", "CACTUS");
-			stringData.addDefault("crops.sugar_cane", "SUGAR_CANE");
-			stringData.addDefault("crops.nether_wart", "NETHER_WART");
-			stringData.addDefault("crops.chorus_flower", "CHORUS_FLOWER");
+			stringData.addDefault("crops.wheat", "Wheat");
+			stringData.addDefault("crops.carrots", "Carrots");
+			stringData.addDefault("crops.potatoes", "Potatoes");
+			stringData.addDefault("crops.beetroots", "Beetroots");
+			stringData.addDefault("crops.melon_stem", "Melon_Stem");
+			stringData.addDefault("crops.pumpkin_stem", "Pumpkin_Stem");
+			stringData.addDefault("crops.kelp", "Kelp");
+			stringData.addDefault("crops.cocoa", "Cocoa");
+			stringData.addDefault("crops.cactus", "Cactus");
+			stringData.addDefault("crops.sugar_cane", "Sugar_Cane");
+			stringData.addDefault("crops.nether_wart", "Nether_Wart");
+			stringData.addDefault("crops.chorus_flower", "Chorus_Flower");
 			stringData.addDefault("text.growth", "Growth");
 			stringData.options().copyDefaults(true);
 			stringData.save(stringFile);
