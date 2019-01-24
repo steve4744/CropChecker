@@ -6,3 +6,5 @@
 ################################################
 # Check for new version
 Check_For_Update: true
+# Number of seconds to display growth status (max 8)
+display_time: 3
