@@ -61,18 +61,18 @@ public class CropChecker extends JavaPlugin {
 	public void onDisable() {
 		getLogger().info("CropChecker disabled");
 	}
-	
+
 	public static CropChecker getPlugin() {
 		return instance;
-    }
-	
+	}
+
 	public static ScoreboardManager getScoreboardManager() {
-        if (getPlugin().scoreboardManager == null) {
-            getPlugin().scoreboardManager = new ScoreboardManager(instance);
-        }
-        return getPlugin().scoreboardManager;
-    }
-	
+		if (getPlugin().scoreboardManager == null) {
+			getPlugin().scoreboardManager = new ScoreboardManager(instance);
+		}
+		return getPlugin().scoreboardManager;
+	}
+
 	private void checkForUpdate() {
 		if (!getConfig().getBoolean("Check_For_Update", true)) {
 			return;
