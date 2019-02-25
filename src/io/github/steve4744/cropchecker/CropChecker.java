@@ -30,6 +30,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import io.github.steve4744.cropchecker.configuration.Configuration;
+import io.github.steve4744.cropchecker.data.DataHandler;
 import io.github.steve4744.cropchecker.metrics.Metrics;
 
 
@@ -38,6 +39,7 @@ public class CropChecker extends JavaPlugin {
 	private String version;
 	private static CropChecker instance;
 	private ScoreboardManager scoreboardManager;
+	private DataHandler dataHandler;
 
 	@Override
 	public void onEnable() {
@@ -52,6 +54,8 @@ public class CropChecker extends JavaPlugin {
 		pm.registerEvents(new CropListener(), this);
 		
 		new Configuration(this);
+		dataHandler = new DataHandler(this);
+
 		new Metrics(this);
 		
 		checkForUpdate();
@@ -59,6 +63,8 @@ public class CropChecker extends JavaPlugin {
 		
 	@Override
 	public void onDisable() {
+		dataHandler = null;
+		scoreboardManager = null;
 		getLogger().info("CropChecker disabled");
 	}
 
@@ -73,6 +79,9 @@ public class CropChecker extends JavaPlugin {
 		return getPlugin().scoreboardManager;
 	}
 
+	public DataHandler getDataHandler() {
+		return dataHandler;
+	}
 	private void checkForUpdate() {
 		if (!getConfig().getBoolean("Check_For_Update", true)) {
 			return;
