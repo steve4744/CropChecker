@@ -4,3 +4,7 @@ author: steve4744
 version: 1.4
 api-version: 1.13
 description: Checks the age of your crops
+permissions:
+  cropchecker.use:
+    description: used to control who can use cropchecker and where.
+    default: true

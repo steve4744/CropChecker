@@ -42,11 +42,15 @@ public class CropListener implements Listener {
 		if (event.getAction() != Action.RIGHT_CLICK_BLOCK || event.getHand().equals(EquipmentSlot.OFF_HAND)) {
 			return;
 		}
-		
+
 		Player player = event.getPlayer();
+		if (!player.hasPermission("cropchecker.use")) {
+			return;
+		}
 		if (!PlayerMethods.isHoeing(player)) {
 			return;
 		}
+
 		BlockData bdata = event.getClickedBlock().getBlockData();
 		Material crop = bdata.getMaterial();
 		if (bdata instanceof Ageable) {
