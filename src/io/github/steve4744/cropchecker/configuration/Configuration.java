@@ -77,6 +77,7 @@ public class Configuration {
 			stringData.addDefault("crops.pumpkin_stem", "Pumpkin_Stem");
 			stringData.addDefault("crops.kelp", "Kelp");
 			stringData.addDefault("crops.cocoa", "Cocoa");
+			stringData.addDefault("crops.bamboo", "Bamboo");
 			stringData.addDefault("crops.cactus", "Cactus");
 			stringData.addDefault("crops.sugar_cane", "Sugar_Cane");
 			stringData.addDefault("crops.nether_wart", "Nether_Wart");
