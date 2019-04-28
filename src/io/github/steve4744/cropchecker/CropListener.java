@@ -27,6 +27,7 @@ package io.github.steve4744.cropchecker;
 import org.bukkit.Material;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Levelled;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -36,13 +37,22 @@ import org.bukkit.inventory.EquipmentSlot;
 
 public class CropListener implements Listener {
 
+	private final CropChecker plugin;
+
+	public CropListener(CropChecker plugin) {
+		this.plugin = plugin;
+	}
+
 	@EventHandler
 	public void onCropCheck(PlayerInteractEvent event) {
-
 		if (event.getAction() != Action.RIGHT_CLICK_BLOCK || event.getHand().equals(EquipmentSlot.OFF_HAND)) {
 			return;
 		}
 
+		BlockData bdata = event.getClickedBlock().getBlockData();
+		if (!(bdata instanceof Ageable || bdata instanceof Levelled)) {
+			return;
+		}
 		Player player = event.getPlayer();
 		if (!player.hasPermission("cropchecker.use")) {
 			return;
@@ -51,16 +61,9 @@ public class CropListener implements Listener {
 			return;
 		}
 
-		BlockData bdata = event.getClickedBlock().getBlockData();
 		Material crop = bdata.getMaterial();
-		if (bdata instanceof Ageable) {
-			
-			Ageable age = (Ageable) bdata;
-			int growth = age.getAge() * 100 / age.getMaximumAge();
-			
-			CropChecker.getScoreboardManager().showProgress(player, crop, growth);
-			event.setCancelled(true);
-		}
+		plugin.getScoreboardManager().showProgress(player, crop, plugin.getDataHandler().getProgress(bdata));
+		event.setCancelled(true);
 	}
 
 }

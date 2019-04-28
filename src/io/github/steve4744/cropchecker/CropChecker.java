@@ -35,32 +35,31 @@ import io.github.steve4744.cropchecker.metrics.Metrics;
 
 
 public class CropChecker extends JavaPlugin {
-	
+
 	private String version;
-	private static CropChecker instance;
 	private ScoreboardManager scoreboardManager;
 	private DataHandler dataHandler;
+	private Configuration configuration;
 
 	@Override
 	public void onEnable() {
 
-		instance = this;
 		this.saveDefaultConfig();
 		getConfig().options().copyDefaults(true);
 		saveConfig();
 		version = this.getDescription().getVersion();
-		
+
 		PluginManager pm = Bukkit.getPluginManager();
-		pm.registerEvents(new CropListener(), this);
-		
-		new Configuration(this);
+		pm.registerEvents(new CropListener(this), this);
+
+		configuration = new Configuration(this);
 		dataHandler = new DataHandler(this);
 
 		new Metrics(this);
-		
+
 		checkForUpdate();
 	}
-		
+
 	@Override
 	public void onDisable() {
 		dataHandler = null;
@@ -68,20 +67,21 @@ public class CropChecker extends JavaPlugin {
 		getLogger().info("CropChecker disabled");
 	}
 
-	public static CropChecker getPlugin() {
-		return instance;
-	}
-
-	public static ScoreboardManager getScoreboardManager() {
-		if (getPlugin().scoreboardManager == null) {
-			getPlugin().scoreboardManager = new ScoreboardManager(instance);
+	public ScoreboardManager getScoreboardManager() {
+		if (scoreboardManager == null) {
+			scoreboardManager = new ScoreboardManager(this);
 		}
-		return getPlugin().scoreboardManager;
+		return scoreboardManager;
 	}
 
 	public DataHandler getDataHandler() {
 		return dataHandler;
 	}
+
+	public Configuration getConfiguration() {
+		return configuration;
+	}
+
 	private void checkForUpdate() {
 		if (!getConfig().getBoolean("Check_For_Update", true)) {
 			return;

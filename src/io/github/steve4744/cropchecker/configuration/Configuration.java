@@ -32,9 +32,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import io.github.steve4744.cropchecker.CropChecker;
 
 public class Configuration {
-	
+
 	private File stringFile, dataFolder;
-	private static FileConfiguration stringData;
+	private FileConfiguration stringData;
 
 	public Configuration(CropChecker plugin) {
 
@@ -63,7 +63,7 @@ public class Configuration {
 		saveStrings();
 	}
 
-	public static FileConfiguration getStringData() {
+	public FileConfiguration getStringData() {
 		return stringData;
     }
 
@@ -83,6 +83,7 @@ public class Configuration {
 			stringData.addDefault("crops.nether_wart", "Nether_Wart");
 			stringData.addDefault("crops.chorus_flower", "Chorus_Flower");
 			stringData.addDefault("crops.sweet_berry_bush", "Sweet_Berry_Bush");
+			stringData.addDefault("text.level", "Level");
 			stringData.addDefault("text.growth", "Growth");
 			stringData.options().copyDefaults(true);
 			stringData.save(stringFile);

@@ -52,7 +52,7 @@ public class ScoreboardManager {
 		this.dataHandler = plugin.getDataHandler();
 	}
 
-	public void showProgress(Player player, Material crop, int growth) {
+	public void showProgress(Player player, Material crop, int progress) {
 		//kill any previous scheduled tasks
 		cancelTask(player);
 
@@ -66,8 +66,8 @@ public class ScoreboardManager {
 		resetScoreboard(player);
 
 		Objective o = scoreboard.getObjective(DisplaySlot.SIDEBAR);
-		o.setDisplayName(ChatColor.GOLD.toString() + ChatColor.BOLD + dataHandler.getDisplayName(crop) + ChatColor.WHITE + dataHandler.getPadding(crop) + "%");
-		o.getScore(dataHandler.getText() + ":").setScore(growth);
+		o.setDisplayName(ChatColor.GOLD.toString() + ChatColor.BOLD + dataHandler.getDisplayName(crop) + ChatColor.WHITE + dataHandler.getPadding(crop));
+		o.getScore(dataHandler.getText() + ":").setScore(progress);
 		player.setScoreboard(scoreboard);
 
 		BukkitTask task = new BukkitRunnable() {
