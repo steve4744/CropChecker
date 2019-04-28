@@ -51,12 +51,10 @@ public class CropChecker extends JavaPlugin {
 
 		PluginManager pm = Bukkit.getPluginManager();
 		pm.registerEvents(new CropListener(this), this);
-
 		configuration = new Configuration(this);
 		dataHandler = new DataHandler(this);
 
 		new Metrics(this);
-
 		checkForUpdate();
 	}
 

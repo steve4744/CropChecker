@@ -43,8 +43,12 @@ public class DataHandler {
 
 	public String getDisplayName(Material crop) {
 		FileConfiguration cfg = plugin.getConfiguration().getStringData();
+		String path = "crops.";
 		String cropname = crop.name().toLowerCase();
-		return cfg.getString("crops." + cropname, crop.name());	
+		if (cropname.equalsIgnoreCase("composter") || cropname.equalsIgnoreCase("cauldron")) {
+			path = "item.";
+		}
+		return cfg.getString(path + cropname, crop.name());	
 	}
 
 	private String getGrowthText() {

@@ -46,13 +46,13 @@ public class Configuration {
 			try {
 				stringFile.createNewFile();
 				plugin.getLogger().info("Created strings.yml");
-				saveStrings();
 			} catch (Exception ex) {
 				ex.printStackTrace();
 				plugin.getLogger().info("Failed!");
 			}
 		}
 
+		saveStrings();
 		try {
 			stringData.load(stringFile);
 
@@ -60,7 +60,6 @@ public class Configuration {
 			plugin.getLogger().info("Failed loading config: " + ex.getMessage());
 			ex.printStackTrace();
 		}
-		saveStrings();
 	}
 
 	public FileConfiguration getStringData() {
@@ -83,6 +82,8 @@ public class Configuration {
 			stringData.addDefault("crops.nether_wart", "Nether_Wart");
 			stringData.addDefault("crops.chorus_flower", "Chorus_Flower");
 			stringData.addDefault("crops.sweet_berry_bush", "Sweet_Berry_Bush");
+			stringData.addDefault("item.cauldron", "Cauldron");
+			stringData.addDefault("item.composter", "Composter");
 			stringData.addDefault("text.level", "Level");
 			stringData.addDefault("text.growth", "Growth");
 			stringData.options().copyDefaults(true);
