@@ -6,9 +6,9 @@ Crop Checker is a simple utility plugin for Spigot/Minecraft 1.13 and 1.14. Well
 
 Simply by right-clicking the crop with a hoe, it will briefly display on screen the name and age of the crop. The age is shown as a percentage from 0% (growth not started) to 100% (fully grown).
 
-Starting with Spigot/Minecraft 1.14, you can also right-click the Composter to display its level.
+Starting with Spigot/Minecraft 1.14, you can also right-click the Composter to display how full it is.
 
-This plugin is only supported on Spigot/Minecraft 1.13, and 1.14.
+This plugin is only supported on Spigot/Minecraft 1.13.2, and 1.14.
 
 ## Dependencies
 None
@@ -26,4 +26,4 @@ CropChecker can be [downloaded from Spigot](https://www.spigotmc.org/resources/c
     Restart your server
     (Optional) Translate the crop names into your desired language by editing 'strings.yml'
 
-Updated 28 April 2019 by steve4744
+Updated 06 May 2019 by steve4744
