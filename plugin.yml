@@ -4,7 +4,14 @@ author: steve4744
 version: 1.5
 api-version: 1.13
 description: Checks the age of your crops
+commands:
+  cropchecker:
+    aliases: [cc]
+    description: CropChecker commands
 permissions:
   cropchecker.use:
-    description: used to control who can use cropchecker and where.
+    description: used to control who can use CropChecker and where.
     default: true
+  cropchecker.admin:
+    description: permission to reload config
+    default: op
