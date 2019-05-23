@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
  */
-package io.github.steve4744.cropchecker;
+package io.github.steve4744.cropchecker.display;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,6 +36,7 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
+import io.github.steve4744.cropchecker.CropChecker;
 import io.github.steve4744.cropchecker.data.DataHandler;
 
 public class ScoreboardManager {

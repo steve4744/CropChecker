@@ -31,6 +31,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import io.github.steve4744.cropchecker.configuration.Configuration;
 import io.github.steve4744.cropchecker.data.DataHandler;
+import io.github.steve4744.cropchecker.display.ScoreboardManager;
 import io.github.steve4744.cropchecker.metrics.Metrics;
 
 
