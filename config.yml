@@ -8,3 +8,10 @@
 Check_For_Update: true
 # Number of seconds to display growth status (max 8)
 display_time: 3
+# Enable the preferred method(s) to display the block info
+Display:
+  scoreboard:
+    enabled: true
+  actionbar:
+    enabled: false
+    textcolor: WHITE

@@ -26,8 +26,11 @@ package io.github.steve4744.cropchecker.configuration;
 
 import java.io.File;
 
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+
+import com.google.common.base.Enums;
 
 import io.github.steve4744.cropchecker.CropChecker;
 
@@ -35,9 +38,11 @@ public class Configuration {
 
 	private File stringFile, dataFolder;
 	private FileConfiguration stringData;
+	private final CropChecker plugin;
 
 	public Configuration(CropChecker plugin) {
 
+		this.plugin = plugin;
 		dataFolder = plugin.getDataFolder();
 		stringFile = new File(dataFolder, "strings.yml");
 		stringData = new YamlConfiguration();
@@ -91,6 +96,22 @@ public class Configuration {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+	}
+
+	public boolean isScoreboardEnabled() {
+		return plugin.getConfig().getBoolean("Display.scoreboard.enabled", true);
+	}
+
+	public boolean isActionBarEnabled() {
+		return plugin.getConfig().getBoolean("Display.actionbar.enabled", true);
+	}
+
+	public String getActionBarColor() {
+		String colour = plugin.getConfig().getString("Display.actionbar.textcolor").toUpperCase();
+		if (colour == null || Enums.getIfPresent(ChatColor.class, colour).orNull() == null) {
+			colour = "WHITE";
+		}
+		return colour;
 	}
 
 }
