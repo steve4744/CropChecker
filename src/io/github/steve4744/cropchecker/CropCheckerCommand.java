@@ -48,7 +48,7 @@ public class CropCheckerCommand implements CommandExecutor {
 					sender.sendMessage(ChatColor.GREEN + "[CropChecker] " + ChatColor.WHITE + "You do not have permission to reload the plugin");
 					return true;
 				}
-				plugin.reloadConfig();
+				plugin.reloadPlugin();
 				sender.sendMessage(ChatColor.GREEN + "[CropChecker] " + ChatColor.WHITE + "Config reloaded");
 				return false;
 			} else if (args[0].equalsIgnoreCase("help")) {

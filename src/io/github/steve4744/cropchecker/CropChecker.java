@@ -109,4 +109,8 @@ public class CropChecker extends JavaPlugin {
 		}.runTaskLaterAsynchronously(this, 20L);
 	}
 
+	public void reloadPlugin() {
+		reloadConfig();
+		configuration = new Configuration(this);
+	}
 }
