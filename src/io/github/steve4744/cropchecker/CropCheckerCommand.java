@@ -28,7 +28,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 public class CropCheckerCommand implements CommandExecutor {
 
@@ -43,23 +42,21 @@ public class CropCheckerCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		String infoMessage = ChatColor.GREEN + "[CropChecker] " + ChatColor.WHITE + "Version " + version + " : plugin by "+ ChatColor.AQUA + "steve4744";
-		if (!(sender instanceof Player)) {
-			sender.sendMessage(infoMessage);
-			return true;	
-		}
-		Player player = (Player) sender;
 		if (args.length > 0) {
 			if (args[0].equalsIgnoreCase("reload")) {
-				if (!player.hasPermission("cropchecker.admin")) {
-					player.sendMessage(ChatColor.GREEN + "[CropChecker] " + ChatColor.WHITE + "You do not have permission to reload the plugin");
+				if (!sender.hasPermission("cropchecker.admin")) {
+					sender.sendMessage(ChatColor.GREEN + "[CropChecker] " + ChatColor.WHITE + "You do not have permission to reload the plugin");
 					return true;
 				}
 				plugin.reloadConfig();
-				player.sendMessage(ChatColor.GREEN + "[CropChecker] " + ChatColor.WHITE + "Config reloaded");
+				sender.sendMessage(ChatColor.GREEN + "[CropChecker] " + ChatColor.WHITE + "Config reloaded");
+				return false;
+			} else if (args[0].equalsIgnoreCase("help")) {
+				sender.sendMessage(ChatColor.GREEN + "[CropChecker] " + ChatColor.WHITE + "Right-click crops with a hoe to check growth");
 				return false;
 			}
 		}
-		player.sendMessage(infoMessage);
+		sender.sendMessage(infoMessage);
 		return true;
 	}
 }

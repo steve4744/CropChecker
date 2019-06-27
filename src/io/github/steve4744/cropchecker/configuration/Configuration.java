@@ -51,13 +51,12 @@ public class Configuration {
 			try {
 				stringFile.createNewFile();
 				plugin.getLogger().info("Created strings.yml");
+				saveStrings();
 			} catch (Exception ex) {
 				ex.printStackTrace();
 				plugin.getLogger().info("Failed!");
 			}
 		}
-
-		saveStrings();
 		try {
 			stringData.load(stringFile);
 
@@ -65,6 +64,7 @@ public class Configuration {
 			plugin.getLogger().info("Failed loading config: " + ex.getMessage());
 			ex.printStackTrace();
 		}
+		saveStrings();
 	}
 
 	public FileConfiguration getStringData() {
