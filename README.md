@@ -8,13 +8,13 @@ Simply by right-clicking the crop with a hoe, it will briefly display on screen 
 
 Starting with Spigot/Minecraft 1.14, you can also right-click the Composter to display how full it is.
 
-This plugin is only supported on Spigot/Minecraft 1.13.2, and 1.14.
+This plugin is only supported on Spigot/Minecraft 1.13.2, and 1.14.x.
 
 ## Dependencies
 None
 
 ## Commands & Permissions
-None
+__/cropchecker reload__ requires cropchecker.admin permission
 
 ## Download
 CropChecker can be [downloaded from Spigot](https://www.spigotmc.org/resources/cropchecker-check-crop-growth-progress.64044/ "CropChecker by steve4744")
@@ -26,4 +26,4 @@ CropChecker can be [downloaded from Spigot](https://www.spigotmc.org/resources/c
     Restart your server
     (Optional) Translate the crop names into your desired language by editing 'strings.yml'
 
-Updated 06 May 2019 by steve4744
+Updated 27 July 2019 by steve4744
