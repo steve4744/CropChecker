@@ -15,3 +15,7 @@ Display:
   actionbar:
     enabled: false
     textcolor: WHITE
+  bossbar:
+    enabled: false
+    barcolor: GREEN
+    textcolor: WHITE

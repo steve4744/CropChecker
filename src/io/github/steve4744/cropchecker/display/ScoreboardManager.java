@@ -76,7 +76,7 @@ public class ScoreboardManager {
 			public void run() {
 				resetScoreboard(player);
 			}
-		}.runTaskLater(plugin, getDisplayTime());
+		}.runTaskLater(plugin, plugin.getDisplayHandler().getDisplayTime());
 		taskMap.put(player.getName(), task);
 	}
 
@@ -101,18 +101,6 @@ public class ScoreboardManager {
 			task.cancel();
 			taskMap.remove(player.getName());
 		}
-	}
-
-	/**
-	 * The number of seconds between 1 and 8 (default 3) to display the on-screen info
-	 * @return number of seconds in ticks 
-	 */
-	private int getDisplayTime() {
-		int seconds = plugin.getConfig().getInt("display_time", 3);
-		if (seconds < 1 || seconds > 8) {
-			seconds = 3;
-		}
-		return seconds * 20;
 	}
 
 }

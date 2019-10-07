@@ -40,15 +40,40 @@ public class DisplayHandler {
 		this.plugin = plugin;
 	}
 
+	/**
+	 * Get the enabled display option(s) for presenting the crop name and progress.
+	 * @param player
+	 * @param crop
+	 * @param progress
+	 */
 	public void getVisualMethod(Player player, Material crop, Integer progress) {
 		if (plugin.getConfiguration().isScoreboardEnabled()) {
 			plugin.getScoreboardManager().showProgress(player, crop, progress);
 		}
+
 		if (plugin.getConfiguration().isActionBarEnabled() && !isMC1_13()) {
 			String message = plugin.getDataHandler().getDisplayName(crop) + " : " + progress + "%";
 			ActionBar actionbar = new ActionBar(ChatColor.valueOf(plugin.getConfiguration().getActionBarColor()) + message);
 			actionbar.sendBar(player);
 		}
+
+		if (plugin.getConfiguration().isBossbarEnabled()) {
+			String message = plugin.getDataHandler().getDisplayName(crop) + " : " + progress + "%";
+			BossbarManager bm = new BossbarManager(plugin);
+			bm.setBar(player, message, progress);
+		}
+	}
+
+	/**
+	 * The number of seconds between 1 and 8 (default 3) to display the on-screen info
+	 * @return number of seconds in ticks 
+	 */
+	public int getDisplayTime() {
+		int seconds = plugin.getConfig().getInt("display_time", 3);
+		if (seconds < 1 || seconds > 8) {
+			seconds = 3;
+		}
+		return seconds * 20;
 	}
 
 	private boolean isMC1_13() {

@@ -27,6 +27,7 @@ package io.github.steve4744.cropchecker.configuration;
 import java.io.File;
 
 import org.bukkit.ChatColor;
+import org.bukkit.boss.BarColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -106,9 +107,29 @@ public class Configuration {
 		return plugin.getConfig().getBoolean("Display.actionbar.enabled", true);
 	}
 
+	public boolean isBossbarEnabled() {
+		return plugin.getConfig().getBoolean("Display.bossbar.enabled", true);
+	}
+
 	public String getActionBarColor() {
 		String colour = plugin.getConfig().getString("Display.actionbar.textcolor").toUpperCase();
 		if (colour == null || Enums.getIfPresent(ChatColor.class, colour).orNull() == null) {
+			colour = "WHITE";
+		}
+		return colour;
+	}
+
+	public String getBossbarColor() {
+		String colour = plugin.getConfig().getString("Display.bossbar.barcolor").toUpperCase();
+		if (colour == null || Enums.getIfPresent(BarColor.class, colour).orNull() == null) {
+			colour = "GREEN";
+		}
+		return colour;
+	}
+
+	public String getBossbarTextColor() {
+		String colour = plugin.getConfig().getString("Display.bossbar.textcolor").toUpperCase();
+		if (colour == null || Enums.getIfPresent(BarColor.class, colour).orNull() == null) {
 			colour = "WHITE";
 		}
 		return colour;
