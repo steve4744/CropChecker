@@ -34,15 +34,14 @@ import io.github.steve4744.cropchecker.CropChecker;
 
 public class DataHandler {
 
-	private final CropChecker plugin;
 	private String text;
+	private FileConfiguration cfg;
 
 	public DataHandler(CropChecker plugin) {
-		this.plugin = plugin;
+		cfg = plugin.getConfiguration().getStringData();
 	}
 
 	public String getDisplayName(Material crop) {
-		FileConfiguration cfg = plugin.getConfiguration().getStringData();
 		String path = "crops.";
 		String cropname = crop.name().toLowerCase();
 		if (cropname.equalsIgnoreCase("composter") || cropname.equalsIgnoreCase("cauldron")) {
@@ -52,12 +51,10 @@ public class DataHandler {
 	}
 
 	private String getGrowthText() {
-		FileConfiguration cfg = plugin.getConfiguration().getStringData();
 		return cfg.getString("text.growth", "Growth");	
 	}
 
 	private String getLevelText() {
-		FileConfiguration cfg = plugin.getConfiguration().getStringData();
 		return cfg.getString("text.level", "Level");
 	}
 
