@@ -8,10 +8,13 @@ Simply by right-clicking the crop with a hoe, it will briefly display on screen 
 
 Starting with Spigot/Minecraft 1.14, you can also right-click the Composter to display how full it is.
 
-This plugin is only supported on Spigot/Minecraft 1.13.2, and 1.14.x.
+By default, the information is displayed for 3 seconds on a small Scoreboard on the right-hand side of the screen. If you prefer, the information can be displayed on a BossBar, using the bar to visually display progress. The bar colour, text colour and display time are all configurable in the config.yml file.
+
+With Minecraft/Spigot 1.14, there is also the option to display the text on the ActionBar. The colour of the text can again be set in the config.yml file.
+
 
 ## Dependencies
-None
+This plugin is only supported on Spigot/Minecraft 1.13.2, and 1.14.x.
 
 ## Commands & Permissions
 __/cropchecker reload__ requires cropchecker.admin permission
@@ -26,4 +29,4 @@ CropChecker can be [downloaded from Spigot](https://www.spigotmc.org/resources/c
     Restart your server
     (Optional) Translate the crop names into your desired language by editing 'strings.yml'
 
-Updated 27 July 2019 by steve4744
+Updated 08 October 2019 by steve4744
