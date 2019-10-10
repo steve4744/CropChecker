@@ -28,6 +28,7 @@ import org.bukkit.Material;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Levelled;
+import org.bukkit.block.data.type.TurtleEgg;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import io.github.steve4744.cropchecker.CropChecker;
@@ -44,7 +45,7 @@ public class DataHandler {
 	public String getDisplayName(Material crop) {
 		String path = "crops.";
 		String cropname = crop.name().toLowerCase();
-		if (cropname.equalsIgnoreCase("composter") || cropname.equalsIgnoreCase("cauldron")) {
+		if (cropname.equalsIgnoreCase("composter") || cropname.equalsIgnoreCase("cauldron") || cropname.equalsIgnoreCase("turtle_egg")) {
 			path = "item.";
 		}
 		return cfg.getString(path + cropname, crop.name());	
@@ -87,6 +88,11 @@ public class DataHandler {
 			Levelled levelled = (Levelled) bdata;
 			progress = levelled.getLevel() * 100 / levelled.getMaximumLevel();
 			text = getLevelText();
+
+		} else if (bdata instanceof TurtleEgg) {
+			TurtleEgg turtleEgg = (TurtleEgg) bdata;
+			progress = turtleEgg.getHatch() *100 / turtleEgg.getMaximumHatch();
+			text = getGrowthText();
 		}
 
 		return progress;

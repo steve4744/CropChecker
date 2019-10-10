@@ -90,6 +90,7 @@ public class Configuration {
 			stringData.addDefault("crops.sweet_berry_bush", "Sweet_Berry_Bush");
 			stringData.addDefault("item.cauldron", "Cauldron");
 			stringData.addDefault("item.composter", "Composter");
+			stringData.addDefault("item.turtle_egg", "Turtle_Egg");
 			stringData.addDefault("text.level", "Level");
 			stringData.addDefault("text.growth", "Growth");
 			stringData.options().copyDefaults(true);
