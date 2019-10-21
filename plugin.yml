@@ -1,7 +1,7 @@
 name: CropChecker
 main: io.github.steve4744.cropchecker.CropChecker
 author: steve4744
-version: 1.9
+version: 2.0
 api-version: 1.13
 description: Checks the age of your crops
 commands:
