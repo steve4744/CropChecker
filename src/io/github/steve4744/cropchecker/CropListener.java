@@ -28,6 +28,8 @@ import org.bukkit.Material;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Levelled;
+import org.bukkit.block.data.type.Beehive;
+import org.bukkit.block.data.type.Sapling;
 import org.bukkit.block.data.type.TurtleEgg;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -51,7 +53,7 @@ public class CropListener implements Listener {
 		}
 
 		BlockData bdata = event.getClickedBlock().getBlockData();
-		if (!(bdata instanceof Ageable || bdata instanceof Levelled || bdata instanceof TurtleEgg)) {
+		if (!(bdata instanceof Ageable || bdata instanceof Levelled || bdata instanceof TurtleEgg || bdata instanceof Beehive || bdata instanceof Sapling)) {
 			return;
 		}
 		Player player = event.getPlayer();

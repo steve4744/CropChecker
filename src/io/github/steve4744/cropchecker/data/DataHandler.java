@@ -24,10 +24,15 @@ SOFTWARE.
  */
 package io.github.steve4744.cropchecker.data;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.bukkit.Material;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Levelled;
+import org.bukkit.block.data.type.Beehive;
+import org.bukkit.block.data.type.Sapling;
 import org.bukkit.block.data.type.TurtleEgg;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -42,17 +47,24 @@ public class DataHandler {
 		cfg = plugin.getConfiguration().getStringData();
 	}
 
+	/**
+	 * Get the localised name to use as the name to display.
+	 * @param crop
+	 * @return
+	 */
 	public String getDisplayName(Material crop) {
 		String path = "crops.";
 		String cropname = crop.name().toLowerCase();
-		if (cropname.equalsIgnoreCase("composter") || cropname.equalsIgnoreCase("cauldron") || cropname.equalsIgnoreCase("turtle_egg")) {
+		List<String> items = Arrays.asList("composter", "cauldron", "turtle_egg", "beehive", "bee_nest");
+
+		if (items.stream().anyMatch(s -> cropname.equalsIgnoreCase(s))) {
 			path = "item.";
 		}
-		return cfg.getString(path + cropname, crop.name());	
+		return cfg.getString(path + cropname, crop.name());
 	}
 
 	private String getGrowthText() {
-		return cfg.getString("text.growth", "Growth");	
+		return cfg.getString("text.growth", "Growth");
 	}
 
 	private String getLevelText() {
@@ -63,11 +75,16 @@ public class DataHandler {
 		return text;
 	}
 
+	/**
+	 * Attempt to pad the display string for the scoreboard if the crop name is shorter than the text,
+	 * so that the % sign is in the last char position.
+	 * @param crop
+	 * @return
+	 */
 	public String getPadding(Material crop) {
 		String cropname = getDisplayName(crop);
-		
 		int padlen = 5;
-		//we need extra padding if crop name is shorter than the text
+
 		if (cropname.length() < getText().length()) {
 			int mismatch = getText().length() - cropname.length();
 			//pad with extra 10 spaces for good measure
@@ -76,6 +93,11 @@ public class DataHandler {
 		return String.format("%" + padlen + "s", "%");
 	}
 
+	/**
+	 * Get the growth stage of the crop as a percentage of the maximum age.
+	 * @param bdata
+	 * @return
+	 */
 	public int getProgress(BlockData bdata) {
 		int progress = 0;
 
@@ -92,6 +114,16 @@ public class DataHandler {
 		} else if (bdata instanceof TurtleEgg) {
 			TurtleEgg turtleEgg = (TurtleEgg) bdata;
 			progress = turtleEgg.getHatch() *100 / turtleEgg.getMaximumHatch();
+			text = getGrowthText();
+
+		} else if (bdata instanceof Beehive) {
+			Beehive beehive = (Beehive) bdata;
+			progress = beehive.getHoneyLevel() * 100 / beehive.getMaximumHoneyLevel();
+			text = getLevelText();
+
+		} else if (bdata instanceof Sapling) {
+			Sapling sapling = (Sapling) bdata;
+			progress = sapling.getStage() * 100 / sapling.getMaximumStage();
 			text = getGrowthText();
 		}
 

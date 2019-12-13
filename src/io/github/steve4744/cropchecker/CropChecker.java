@@ -111,6 +111,6 @@ public class CropChecker extends JavaPlugin {
 
 	public void reloadPlugin() {
 		reloadConfig();
-		configuration = new Configuration(this);
+		configuration.reloadStrings();
 	}
 }

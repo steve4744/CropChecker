@@ -52,12 +52,16 @@ public class Configuration {
 			try {
 				stringFile.createNewFile();
 				plugin.getLogger().info("Created strings.yml");
-				saveStrings();
 			} catch (Exception ex) {
 				ex.printStackTrace();
 				plugin.getLogger().info("Failed!");
 			}
 		}
+		reloadStrings();
+		saveStrings();
+	}
+
+	public void reloadStrings() {
 		try {
 			stringData.load(stringFile);
 
@@ -65,7 +69,6 @@ public class Configuration {
 			plugin.getLogger().info("Failed loading config: " + ex.getMessage());
 			ex.printStackTrace();
 		}
-		saveStrings();
 	}
 
 	public FileConfiguration getStringData() {
@@ -88,13 +91,22 @@ public class Configuration {
 			stringData.addDefault("crops.nether_wart", "Nether_Wart");
 			stringData.addDefault("crops.chorus_flower", "Chorus_Flower");
 			stringData.addDefault("crops.sweet_berry_bush", "Sweet_Berry_Bush");
+			stringData.addDefault("crops.acacia_sapling", "Acacia_Sapling");
+			stringData.addDefault("crops.birch_sapling", "Birch_Sapling");
+			stringData.addDefault("crops.dark_oak_sapling", "Dark_Oak_Sapling");
+			stringData.addDefault("crops.jungle_sapling", "Jungle_Sapling");
+			stringData.addDefault("crops.oak_sapling", "Oak_Sapling");
+			stringData.addDefault("crops.spruce_sapling", "Spruce_Sapling");
 			stringData.addDefault("item.cauldron", "Cauldron");
 			stringData.addDefault("item.composter", "Composter");
 			stringData.addDefault("item.turtle_egg", "Turtle_Egg");
+			stringData.addDefault("item.bee_nest", "Bee_Nest");
+			stringData.addDefault("item.beehive", "Beehive");
 			stringData.addDefault("text.level", "Level");
 			stringData.addDefault("text.growth", "Growth");
 			stringData.options().copyDefaults(true);
 			stringData.save(stringFile);
+			reloadStrings();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
