@@ -16,7 +16,7 @@ Starting with Minecraft/Spigot 1.14, there is also the option to display the tex
 
 ## Dependencies
 The latest version of this plugin is only supported on Spigot/Minecraft 1.15.
-Previous versions of the plugin are only supported on Spigot/Minecraft 1.13.2, and 1.14.4..
+Previous versions of the plugin are only supported on Spigot/Minecraft 1.13.2, and 1.14.4.
 
 ## Commands & Permissions
 __/cropchecker reload__ requires cropchecker.admin permission
