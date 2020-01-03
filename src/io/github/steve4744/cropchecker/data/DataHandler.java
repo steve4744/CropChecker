@@ -28,6 +28,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Levelled;
@@ -98,12 +100,16 @@ public class DataHandler {
 	 * @param bdata
 	 * @return
 	 */
-	public int getProgress(BlockData bdata) {
+	public int getProgress(Block block) {
 		int progress = 0;
+		BlockData bdata = block.getBlockData();
 
 		if (bdata instanceof Ageable) {
 			Ageable age = (Ageable) bdata;
 			progress = age.getAge() * 100 / age.getMaximumAge();
+			if (progress == 0 && isFullyGrown(block)) {
+				progress = 100;
+			}
 			text = getGrowthText();
 
 		} else if (bdata instanceof Levelled) {
@@ -128,6 +134,20 @@ public class DataHandler {
 		}
 
 		return progress;
+	}
+
+	/**
+	 * If CACTUS and SUGAR_CANE are at least 3 blocks tall then assume fully grown.
+	 * @param block
+	 * @return
+	 */
+	private boolean isFullyGrown(Block block) {
+		Material material = block.getType();
+		if (material != Material.CACTUS && material != Material.SUGAR_CANE) {
+			return false;
+		}
+		Block below = block.getRelative(BlockFace.DOWN, 2);
+		return below.getType() == material;
 	}
 
 }
