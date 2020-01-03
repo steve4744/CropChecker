@@ -24,24 +24,23 @@ SOFTWARE.
  */
 package io.github.steve4744.cropchecker.display;
 
-import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
-import net.minecraft.server.v1_15_R1.ChatMessageType;
-import net.minecraft.server.v1_15_R1.IChatBaseComponent.ChatSerializer;
-import net.minecraft.server.v1_15_R1.PacketPlayOutChat;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 
 public class ActionBar {
 
-	private PacketPlayOutChat packet;
+	private TextComponent tc;
 
-	public ActionBar(String message) {
-		PacketPlayOutChat packet = new PacketPlayOutChat(ChatSerializer.a("{\"text\":\"" + message + "\"}"), ChatMessageType.GAME_INFO);
-		this.packet = packet;
+	public ActionBar(String message, String colour) {
+		tc = new TextComponent(message);
+		tc.setColor(ChatColor.valueOf(colour));
 	}
 
 	public void sendBar(Player player) {
-		((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
+		player.spigot().sendMessage(ChatMessageType.ACTION_BAR, tc);
 	}
 
 }
