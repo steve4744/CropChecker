@@ -146,8 +146,7 @@ public class DataHandler {
 		if (material != Material.CACTUS && material != Material.SUGAR_CANE) {
 			return false;
 		}
-		Block below = block.getRelative(BlockFace.DOWN, 2);
-		return below.getType() == material;
+		return material == block.getRelative(BlockFace.DOWN).getType() && material == block.getRelative(BlockFace.DOWN, 2).getType();
 	}
 
 }
