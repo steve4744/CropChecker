@@ -15,14 +15,22 @@ Starting with Minecraft/Spigot 1.14, there is also the option to display the tex
 
 
 ## Dependencies
-The latest version of this plugin is only supported on Spigot/Minecraft 1.15.
-Previous versions of the plugin are only supported on Spigot/Minecraft 1.13.2, and 1.14.4.
+The latest version of this plugin is only supported on Spigot/Minecraft 1.15+.
+No other plugins are required.
 
-## Commands & Permissions
-__/cropchecker reload__ requires cropchecker.admin permission
 
 ## Download
-CropChecker can be [downloaded from Spigot](https://www.spigotmc.org/resources/cropchecker-check-crop-growth-progress.64044/ "CropChecker by steve4744")
+For Minecraft 1.15+, CropChecker can be [downloaded from Spigot](https://www.spigotmc.org/resources/cropchecker-check-crop-growth-progress.64044/ "CropChecker by steve4744")
+
+For Minecraft 1.13 and 1.14, download version 2.0 [from Spigot](https://www.spigotmc.org/resources/cropchecker-check-crop-growth-progress.64044/download?version=299945/ "CropChecker v2.0")
+
+For Minecraft 1.12, download version 0.1 [from GitHub](https://github.com/steve4744/CropChecker/releases/download/v0.1/CropChecker.jar "CropChecker v0.1")
+
+
+## Commands & Permissions
+__/cropchecker help__ help on running the plugin
+__/cropchecker reload__ reload the config file (requires cropchecker.admin permission)
+
 
 ## Installation
 
@@ -31,4 +39,5 @@ CropChecker can be [downloaded from Spigot](https://www.spigotmc.org/resources/c
     Restart your server
     (Optional) Translate the crop names into your desired language by editing 'strings.yml'
 
-Updated 13 December 2019 by steve4744
+
+Updated 07 January 2020 by steve4744
