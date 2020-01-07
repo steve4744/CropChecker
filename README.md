@@ -16,6 +16,7 @@ Starting with Minecraft/Spigot 1.14, there is also the option to display the tex
 
 ## Dependencies
 The latest version of this plugin is only supported on Spigot/Minecraft 1.15+.
+
 No other plugins are required.
 
 
@@ -29,6 +30,7 @@ For Minecraft 1.12, download version 0.1 [from GitHub](https://github.com/steve4
 
 ## Commands & Permissions
 __/cropchecker help__ help on running the plugin
+
 __/cropchecker reload__ reload the config file (requires cropchecker.admin permission)
 
 
