@@ -43,6 +43,7 @@ public class CropChecker extends JavaPlugin {
 	private DataHandler dataHandler;
 	private Configuration configuration;
 	private DisplayHandler displayHandler;
+	private PlayerHandler playerHandler;
 
 	@Override
 	public void onEnable() {
@@ -58,6 +59,7 @@ public class CropChecker extends JavaPlugin {
 		configuration = new Configuration(this);
 		dataHandler = new DataHandler(this);
 		displayHandler = new DisplayHandler(this);
+		playerHandler = new PlayerHandler(this);
 
 		new Metrics(this);
 		checkForUpdate();
@@ -88,6 +90,10 @@ public class CropChecker extends JavaPlugin {
 
 	public Configuration getConfiguration() {
 		return configuration;
+	}
+
+	public PlayerHandler getPlayerHandler() {
+		return playerHandler;
 	}
 
 	private void checkForUpdate() {

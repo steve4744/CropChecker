@@ -1,7 +1,11 @@
 ################################################
 # Crop Checker configuration file              #
 #                                              #
-# Use a hoe to check growth progress of crops. #
+# Use any hoe to check growth progress of      #
+# crops, or the honey level of bee hives.      #
+# A specific tool can set in place of a hoe,   #
+# by enabling the override tool, and setting   #
+# the item. Set to AIR to use an empty hand.   #
 # Author: steve4744                            #
 ################################################
 # Check for new version
@@ -19,3 +23,7 @@ Display:
     enabled: false
     barcolor: GREEN
     textcolor: WHITE
+# Set a specific item to use instead of a hoe.
+override_tool:
+  enabled: false
+  item: IRON_HOE

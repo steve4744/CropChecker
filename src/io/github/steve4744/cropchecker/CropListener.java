@@ -51,16 +51,17 @@ public class CropListener implements Listener {
 		if (event.getAction() != Action.RIGHT_CLICK_BLOCK || event.getHand().equals(EquipmentSlot.OFF_HAND)) {
 			return;
 		}
-
-		BlockData bdata = event.getClickedBlock().getBlockData();
-		if (!(bdata instanceof Ageable || bdata instanceof Levelled || bdata instanceof TurtleEgg || bdata instanceof Beehive || bdata instanceof Sapling)) {
-			return;
-		}
 		Player player = event.getPlayer();
 		if (!player.hasPermission("cropchecker.use")) {
 			return;
 		}
-		if (!PlayerMethods.isHoeing(player)) {
+
+		if (!plugin.getPlayerHandler().hasCorrectTool(player)) {
+			return;
+		}
+
+		BlockData bdata = event.getClickedBlock().getBlockData();
+		if (!(bdata instanceof Ageable || bdata instanceof Levelled || bdata instanceof TurtleEgg || bdata instanceof Beehive || bdata instanceof Sapling)) {
 			return;
 		}
 

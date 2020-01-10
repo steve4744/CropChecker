@@ -39,6 +39,7 @@ public class VersionChecker {
 			con.setDoOutput(true);
 			con.setRequestMethod("GET");
 			String version = new BufferedReader(new InputStreamReader(con.getInputStream())).readLine();
+			con.disconnect();
 			if (version.length() <= 7) {
 				return version;
 			}

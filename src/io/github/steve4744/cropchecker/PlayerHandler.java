@@ -24,12 +24,30 @@ SOFTWARE.
  */
 package io.github.steve4744.cropchecker;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-public class PlayerMethods {
+public class PlayerHandler {
 
-	public static boolean isHoeing(Player player) {
+	private CropChecker plugin;
+
+	public PlayerHandler(CropChecker plugin) {
+		this.plugin = plugin;
+	}
+
+	public boolean hasCorrectTool(Player player) {
+		if (!plugin.getConfig().getBoolean("override_tool.enabled")) {
+			return isHoeing(player);
+		}
+		return hasTool(player);
+	}
+
+	private boolean isHoeing(Player player) {
 		return player.getInventory().getItemInMainHand().getType().toString().toLowerCase().contains("_hoe");
 	}
 
+	private boolean hasTool(Player player) {
+		Material tool = Material.getMaterial(plugin.getConfig().getString("override_tool.item", "AIR").toUpperCase());
+		return tool == player.getInventory().getItemInMainHand().getType();
+	}
 }
