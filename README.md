@@ -13,6 +13,8 @@ By default, the information is displayed for 3 seconds on a small Scoreboard on 
 
 Starting with Minecraft/Spigot 1.14, there is also the option to display the text on the ActionBar. The colour of the text can again be set in the config.yml file.
 
+To use a specific item for right-clicking the crop or beehive, then an 'override_item' can be enabled in the config.yml. To right-click with an empty hand, the item should be set to AIR.
+
 
 ## Dependencies
 The latest version of this plugin is only supported on Spigot/Minecraft 1.15+.
@@ -42,4 +44,4 @@ __/cropchecker reload__ reload the config file (requires cropchecker.admin permi
     (Optional) Translate the crop names into your desired language by editing 'strings.yml'
 
 
-Updated 07 January 2020 by steve4744
+Updated 10 January 2020 by steve4744
