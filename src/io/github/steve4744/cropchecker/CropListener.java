@@ -66,6 +66,10 @@ public class CropListener implements Listener {
 		}
 
 		Material crop = bdata.getMaterial();
+		if (plugin.getDataHandler().getDisplayName(crop).isEmpty()) {
+			return;
+		}
+
 		plugin.getDisplayHandler().getVisualMethod(player, crop, plugin.getDataHandler().getProgress(event.getClickedBlock()));
 		event.setCancelled(true);
 	}
