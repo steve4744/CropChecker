@@ -25,7 +25,7 @@ SOFTWARE.
 package io.github.steve4744.cropchecker.display;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import io.github.steve4744.cropchecker.CropChecker;
@@ -41,22 +41,22 @@ public class DisplayHandler {
 	/**
 	 * Get the enabled display option(s) for presenting the crop name and progress.
 	 * @param player
-	 * @param crop
+	 * @param block
 	 * @param progress
 	 */
-	public void getVisualMethod(Player player, Material crop, Integer progress) {
+	public void getVisualMethod(Player player, Block block, Integer progress) {
 		if (plugin.getConfiguration().isScoreboardEnabled()) {
-			plugin.getScoreboardManager().showProgress(player, crop, progress);
+			plugin.getScoreboardManager().showProgress(player, block, progress);
 		}
 
 		if (plugin.getConfiguration().isActionBarEnabled() && !isMC1_13()) {
-			String message = plugin.getDataHandler().getDisplayName(crop) + " : " + progress + "%";
+			String message = plugin.getDataHandler().getDisplayName(block) + " : " + progress + "%";
 			ActionBar actionbar = new ActionBar(message, plugin.getConfiguration().getActionBarColor());
 			actionbar.sendBar(player);
 		}
 
 		if (plugin.getConfiguration().isBossbarEnabled()) {
-			String message = plugin.getDataHandler().getDisplayName(crop) + " : " + progress + "%";
+			String message = plugin.getDataHandler().getDisplayName(block) + " : " + progress + "%";
 			BossbarManager bm = new BossbarManager(plugin);
 			bm.setBar(player, message, progress);
 		}

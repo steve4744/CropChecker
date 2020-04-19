@@ -38,23 +38,31 @@ import org.bukkit.block.data.type.Sapling;
 import org.bukkit.block.data.type.TurtleEgg;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import dev.lone.itemsadder.api.ItemsAdder;
 import io.github.steve4744.cropchecker.CropChecker;
 
 public class DataHandler {
 
 	private String text;
 	private FileConfiguration cfg;
+	private CropChecker plugin;
 
 	public DataHandler(CropChecker plugin) {
 		cfg = plugin.getConfiguration().getStringData();
+		this.plugin = plugin;
 	}
 
 	/**
 	 * Get the localised name to use as the name to display.
-	 * @param crop
+	 * @param block
 	 * @return
 	 */
-	public String getDisplayName(Material crop) {
+	public String getDisplayName(Block block) {
+		if (plugin.isItemsAdder() && ItemsAdder.isCustomCrop(block)) {
+			return ItemsAdder.getCustomBlock(block).getItemMeta().getDisplayName();
+		}
+
+		Material crop = block.getType();
 		String path = "crops.";
 		String cropname = crop.name().toLowerCase();
 		List<String> items = Arrays.asList("composter", "cauldron", "turtle_egg", "beehive", "bee_nest");
@@ -62,6 +70,7 @@ public class DataHandler {
 		if (items.stream().anyMatch(s -> cropname.equalsIgnoreCase(s))) {
 			path = "item.";
 		}
+
 		return cfg.getString(path + cropname, crop.name());
 	}
 
@@ -80,11 +89,11 @@ public class DataHandler {
 	/**
 	 * Attempt to pad the display string for the scoreboard if the crop name is shorter than the text,
 	 * so that the % sign is in the last char position.
-	 * @param crop
+	 * @param block
 	 * @return
 	 */
-	public String getPadding(Material crop) {
-		String cropname = getDisplayName(crop);
+	public String getPadding(Block block) {
+		String cropname = getDisplayName(block);
 		int padlen = 5;
 
 		if (cropname.length() < getText().length()) {

@@ -24,7 +24,7 @@ SOFTWARE.
  */
 package io.github.steve4744.cropchecker;
 
-import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Levelled;
@@ -60,17 +60,17 @@ public class CropListener implements Listener {
 			return;
 		}
 
-		BlockData bdata = event.getClickedBlock().getBlockData();
+		Block block = event.getClickedBlock();
+		BlockData bdata = block.getBlockData();
 		if (!(bdata instanceof Ageable || bdata instanceof Levelled || bdata instanceof TurtleEgg || bdata instanceof Beehive || bdata instanceof Sapling)) {
 			return;
 		}
 
-		Material crop = bdata.getMaterial();
-		if (plugin.getDataHandler().getDisplayName(crop).isEmpty()) {
+		if (plugin.getDataHandler().getDisplayName(block).isEmpty()) {
 			return;
 		}
 
-		plugin.getDisplayHandler().getVisualMethod(player, crop, plugin.getDataHandler().getProgress(event.getClickedBlock()));
+		plugin.getDisplayHandler().getVisualMethod(player, block, plugin.getDataHandler().getProgress(block));
 		event.setCancelled(true);
 	}
 

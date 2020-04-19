@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
@@ -53,7 +53,7 @@ public class ScoreboardManager {
 		this.dataHandler = plugin.getDataHandler();
 	}
 
-	public void showProgress(Player player, Material crop, int progress) {
+	public void showProgress(Player player, Block block, int progress) {
 		//kill any previous scheduled tasks
 		cancelTask(player);
 
@@ -67,7 +67,7 @@ public class ScoreboardManager {
 		resetScoreboard(player);
 
 		Objective o = scoreboard.getObjective(DisplaySlot.SIDEBAR);
-		o.setDisplayName(ChatColor.GOLD.toString() + ChatColor.BOLD + dataHandler.getDisplayName(crop) + ChatColor.WHITE + dataHandler.getPadding(crop));
+		o.setDisplayName(ChatColor.GOLD.toString() + ChatColor.BOLD + dataHandler.getDisplayName(block) + ChatColor.WHITE + dataHandler.getPadding(block));
 		o.getScore(dataHandler.getText() + ":").setScore(progress);
 		player.setScoreboard(scoreboard);
 

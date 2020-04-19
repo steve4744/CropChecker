@@ -25,6 +25,7 @@ SOFTWARE.
 package io.github.steve4744.cropchecker;
 
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -35,7 +36,6 @@ import io.github.steve4744.cropchecker.display.DisplayHandler;
 import io.github.steve4744.cropchecker.display.ScoreboardManager;
 import io.github.steve4744.cropchecker.metrics.Metrics;
 
-
 public class CropChecker extends JavaPlugin {
 
 	private String version;
@@ -44,6 +44,7 @@ public class CropChecker extends JavaPlugin {
 	private Configuration configuration;
 	private DisplayHandler displayHandler;
 	private PlayerHandler playerHandler;
+	private boolean itemsadder;
 
 	@Override
 	public void onEnable() {
@@ -60,6 +61,12 @@ public class CropChecker extends JavaPlugin {
 		dataHandler = new DataHandler(this);
 		displayHandler = new DisplayHandler(this);
 		playerHandler = new PlayerHandler(this);
+
+		Plugin ItemsAdder = pm.getPlugin("ItemsAdder");
+		if (ItemsAdder != null && ItemsAdder.isEnabled()) {
+			itemsadder = true;
+			getLogger().info("Successfully linked with ItemsAdder, version " + ItemsAdder.getDescription().getVersion());
+		}
 
 		new Metrics(this);
 		checkForUpdate();
@@ -96,6 +103,10 @@ public class CropChecker extends JavaPlugin {
 		return playerHandler;
 	}
 
+	public boolean isItemsAdder() {
+		return itemsadder;
+	}
+
 	private void checkForUpdate() {
 		if (!getConfig().getBoolean("Check_For_Update", true)) {
 			return;
@@ -119,4 +130,5 @@ public class CropChecker extends JavaPlugin {
 		reloadConfig();
 		configuration.reloadStrings();
 	}
+
 }
