@@ -68,7 +68,7 @@ public class CropChecker extends JavaPlugin {
 			getLogger().info("Successfully linked with ItemsAdder, version " + ItemsAdder.getDescription().getVersion());
 		}
 
-		new Metrics(this);
+		new Metrics(this, 3901);
 		checkForUpdate();
 	}
 
