@@ -4,6 +4,7 @@ author: steve4744
 version: 2.5-SNAPSHOT
 api-version: 1.15
 description: Checks the age of your crops
+softdepend: [ItemsAdder]
 commands:
   cropchecker:
     description: CropChecker commands
