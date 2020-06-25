@@ -97,6 +97,8 @@ public class Configuration {
 			stringData.addDefault("crops.jungle_sapling", "Jungle_Sapling");
 			stringData.addDefault("crops.oak_sapling", "Oak_Sapling");
 			stringData.addDefault("crops.spruce_sapling", "Spruce_Sapling");
+			stringData.addDefault("crops.twisting_vines", "Twisting_Vines");
+			stringData.addDefault("crops.weeping_vines", "Weeping_Vines");
 			stringData.addDefault("item.cauldron", "Cauldron");
 			stringData.addDefault("item.composter", "Composter");
 			stringData.addDefault("item.turtle_egg", "Turtle_Egg");
