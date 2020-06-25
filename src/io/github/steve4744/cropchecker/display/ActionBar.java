@@ -36,7 +36,7 @@ public class ActionBar {
 
 	public ActionBar(String message, String colour) {
 		tc = new TextComponent(message);
-		tc.setColor(ChatColor.valueOf(colour));
+		tc.setColor(ChatColor.of(colour));
 	}
 
 	public void sendBar(Player player) {
