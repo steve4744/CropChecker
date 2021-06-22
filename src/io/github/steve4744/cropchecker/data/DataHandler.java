@@ -65,7 +65,7 @@ public class DataHandler {
 		Material crop = block.getType();
 		String path = "crops.";
 		String cropname = crop.name().toLowerCase();
-		List<String> items = Arrays.asList("composter", "cauldron", "turtle_egg", "beehive", "bee_nest");
+		List<String> items = Arrays.asList("composter", "water_cauldron", "powder_snow_cauldron", "turtle_egg", "beehive", "bee_nest");
 
 		if (items.stream().anyMatch(s -> cropname.equalsIgnoreCase(s))) {
 			path = "item.";

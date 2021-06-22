@@ -99,7 +99,8 @@ public class Configuration {
 			stringData.addDefault("crops.spruce_sapling", "Spruce_Sapling");
 			stringData.addDefault("crops.twisting_vines", "Twisting_Vines");
 			stringData.addDefault("crops.weeping_vines", "Weeping_Vines");
-			stringData.addDefault("item.cauldron", "Cauldron");
+			stringData.addDefault("item.water_cauldron", "Water_Cauldron");
+			stringData.addDefault("item.powder_snow_cauldron", "Powder_Snow_Cauldron");
 			stringData.addDefault("item.composter", "Composter");
 			stringData.addDefault("item.turtle_egg", "Turtle_Egg");
 			stringData.addDefault("item.bee_nest", "Bee_Nest");
