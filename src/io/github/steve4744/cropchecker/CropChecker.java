@@ -45,6 +45,7 @@ public class CropChecker extends JavaPlugin {
 	private DisplayHandler displayHandler;
 	private PlayerHandler playerHandler;
 	private boolean itemsadder;
+	private static final int BSTATS_PLUGIN_ID = 3901;
 
 	@Override
 	public void onEnable() {
@@ -68,7 +69,7 @@ public class CropChecker extends JavaPlugin {
 			getLogger().info("Successfully linked with ItemsAdder, version " + ItemsAdder.getDescription().getVersion());
 		}
 
-		new Metrics(this, 3901);
+		new Metrics(this, BSTATS_PLUGIN_ID);
 		checkForUpdate();
 	}
 
