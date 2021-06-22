@@ -24,7 +24,6 @@ SOFTWARE.
  */
 package io.github.steve4744.cropchecker.display;
 
-import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
@@ -49,7 +48,7 @@ public class DisplayHandler {
 			plugin.getScoreboardManager().showProgress(player, block, progress);
 		}
 
-		if (plugin.getConfiguration().isActionBarEnabled() && !isMC1_13()) {
+		if (plugin.getConfiguration().isActionBarEnabled()) {
 			String message = plugin.getDataHandler().getDisplayName(block) + " : " + progress + "%";
 			ActionBar actionbar = new ActionBar(message, plugin.getConfiguration().getActionBarColor());
 			actionbar.sendBar(player);
@@ -72,9 +71,5 @@ public class DisplayHandler {
 			seconds = 3;
 		}
 		return seconds * 20;
-	}
-
-	private boolean isMC1_13() {
-		return Bukkit.getVersion().contains("1.13");
 	}
 }
