@@ -26,6 +26,8 @@ package io.github.steve4744.cropchecker.display;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
@@ -45,8 +47,9 @@ public class ScoreboardManager {
 	private CropChecker plugin;
 	private DataHandler dataHandler;
 
-	private HashMap<String, Scoreboard> scoreboardMap = new HashMap<String, Scoreboard>();
-	private HashMap<String, BukkitTask> taskMap = new HashMap<String, BukkitTask>();
+	private Map<String, Scoreboard> scoreboardMap = new HashMap<>();
+	private Map<String, BukkitTask> taskMap = new HashMap<>();
+	private Map<String, Scoreboard> externalScoreboards = new HashMap<>();
 
 	public ScoreboardManager(CropChecker plugin) {
 		this.plugin = plugin;
@@ -56,6 +59,7 @@ public class ScoreboardManager {
 	public void showProgress(Player player, Block block, int progress) {
 		//kill any previous scheduled tasks
 		cancelTask(player);
+		storeExternalScoreboard(player);
 
 		if (scoreboardMap.containsKey(player.getName())) {
 			scoreboard = scoreboardMap.get(player.getName());
@@ -75,6 +79,7 @@ public class ScoreboardManager {
 			@Override
 			public void run() {
 				resetScoreboard(player);
+				restoreExternalScoreboard(player);
 			}
 		}.runTaskLater(plugin, plugin.getDisplayHandler().getDisplayTime());
 		taskMap.put(player.getName(), task);
@@ -100,6 +105,29 @@ public class ScoreboardManager {
 			task = taskMap.get(player.getName());
 			task.cancel();
 			taskMap.remove(player.getName());
+		}
+	}
+
+	/**
+	 * Store 3rd party scoreboard if the scoreboard displayed is not of this plugin,
+	 * i.e. ignore if player is multi-clicking items.
+	 *
+	 * @param player
+	 */
+	private void storeExternalScoreboard(Player player) {
+		if (externalScoreboards.get(player.getName()) == null) {
+			externalScoreboards.put(player.getName(), player.getScoreboard());
+		}
+	}
+
+	/**
+	 * Restore player's 3rd party scoreboard, if previously saved.
+	 *
+	 * @param player
+	 */
+	private void restoreExternalScoreboard(Player player) {
+		if (externalScoreboards.get(player.getName()) != null) {
+			player.setScoreboard(externalScoreboards.remove(player.getName()));
 		}
 	}
 
