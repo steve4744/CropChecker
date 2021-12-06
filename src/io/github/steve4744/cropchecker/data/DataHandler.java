@@ -34,6 +34,7 @@ import org.bukkit.block.data.Ageable;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Levelled;
 import org.bukkit.block.data.type.Beehive;
+import org.bukkit.block.data.type.CaveVinesPlant;
 import org.bukkit.block.data.type.Sapling;
 import org.bukkit.block.data.type.TurtleEgg;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -147,6 +148,7 @@ public class DataHandler {
 
 	/**
 	 * If CACTUS and SUGAR_CANE are at least 3 blocks tall then assume fully grown.
+	 *
 	 * @param block
 	 * @return
 	 */
@@ -158,4 +160,19 @@ public class DataHandler {
 		return material == block.getRelative(BlockFace.DOWN).getType() && material == block.getRelative(BlockFace.DOWN, 2).getType();
 	}
 
+	/**
+	 * CaveVinesPlant is not ageable but can hold berries like CAVE VINES, so lets not pick the berries.
+	 *
+	 * @param bdata
+	 * @return
+	 */
+	public boolean isCaveVinesPlant(BlockData bdata) {
+		if (bdata instanceof CaveVinesPlant) {
+			CaveVinesPlant plant = (CaveVinesPlant) bdata;
+			if (plant.getMaterial() == Material.CAVE_VINES_PLANT && plant.isBerries()) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

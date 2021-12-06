@@ -62,6 +62,11 @@ public class CropListener implements Listener {
 
 		Block block = event.getClickedBlock();
 		BlockData bdata = block.getBlockData();
+
+		if (plugin.getDataHandler().isCaveVinesPlant(bdata)) {
+			event.setCancelled(true);
+			return;
+		}
 		if (!(bdata instanceof Ageable || bdata instanceof Levelled || bdata instanceof TurtleEgg || bdata instanceof Beehive || bdata instanceof Sapling)) {
 			return;
 		}
