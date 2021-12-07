@@ -1,6 +1,6 @@
 # CropChecker
 
-![alt text](https://imgur.com/a/aYwwcnr/ "CropChecker by steve4744")
+![beetroots](https://user-images.githubusercontent.com/6975392/145026806-d5823ef7-3fd6-48be-9a3b-b6fca6650196.png "CropChecker by steve4744")
 
 Crop Checker is a simple utility plugin for Spigot/Minecraft 1.13 to 1.18. Well suited to Survival and Skyblock servers, it will allow players to display the growth status of any of their crops, as well as the status of other items, such as the honey level of bee hives.
 
