@@ -1,8 +1,8 @@
 # CropChecker
 
-![alt text](https://www.spigotmc.org/attachments/2019-01-16_09-58-07-png.398269/ "CropChecker by steve4744")
+![alt text](https://imgur.com/a/aYwwcnr/ "CropChecker by steve4744")
 
-Crop Checker is a simple utility plugin for Spigot/Minecraft 1.13 to 1.17. Well suited to Survival and Skyblock servers, it will allow players to display the growth status of any of their crops, as well as the status of other items, such as the honey level of bee hives.
+Crop Checker is a simple utility plugin for Spigot/Minecraft 1.13 to 1.18. Well suited to Survival and Skyblock servers, it will allow players to display the growth status of any of their crops, as well as the status of other items, such as the honey level of bee hives.
 
 Simply by right-clicking the crop or item with a hoe, it will briefly display on screen the name and age of the crop. The age is shown as a percentage from 0% (growth not started) to 100% (fully grown). The name of the crop or item displayed can be set or translated to any language in 'strings.yml'.
 
@@ -18,14 +18,14 @@ To use a specific item for right-clicking the crop or beehive, then an 'override
 
 
 ## Dependencies
-The latest version of this plugin requires Java 16 and is only supported on Spigot/Minecraft 1.17+.<br>
+The latest version of this plugin requires Java 16 and is only supported on Spigot/Minecraft 1.17.1 and 1.18.<br>
 For other versions of Spigot/Minecraft, refer to the download list below.
 
 No other plugins are required.
 
 
 ## Download
-For Minecraft 1.17, CropChecker can be [downloaded from Spigot](https://www.spigotmc.org/resources/cropchecker-check-crop-growth-progress.64044/ "CropChecker by steve4744")
+For Minecraft 1.18 and 1.17, CropChecker can be [downloaded from Spigot](https://www.spigotmc.org/resources/cropchecker-check-crop-growth-progress.64044/ "CropChecker by steve4744")
 
 For Minecraft 1.16, download version 2.5 [from Spigot](https://www.spigotmc.org/resources/cropchecker-check-crop-growth-progress.64044/download?version=339368 "CropChecker v2.5")
 
@@ -50,4 +50,4 @@ __/cropchecker reload__ reload the config file (requires cropchecker.admin permi
     (Optional) Translate the crop names into your desired language by editing 'strings.yml'
 
 
-Updated 22 June 2021 by steve4744
+Updated 7 December 2021 by steve4744
