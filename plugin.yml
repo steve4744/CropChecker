@@ -1,7 +1,7 @@
 name: CropChecker
 main: io.github.steve4744.cropchecker.CropChecker
 author: steve4744
-version: 3.2-SNAPSHOT
+version: 3.2
 api-version: 1.17
 description: Checks the age of your crops
 softdepend: [ItemsAdder]
