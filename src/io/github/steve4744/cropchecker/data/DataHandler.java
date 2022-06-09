@@ -39,7 +39,8 @@ import org.bukkit.block.data.type.Sapling;
 import org.bukkit.block.data.type.TurtleEgg;
 import org.bukkit.configuration.file.FileConfiguration;
 
-import dev.lone.itemsadder.api.ItemsAdder;
+import dev.lone.itemsadder.api.CustomBlock;
+import dev.lone.itemsadder.api.CustomCrop;
 import io.github.steve4744.cropchecker.CropChecker;
 
 public class DataHandler {
@@ -55,12 +56,13 @@ public class DataHandler {
 
 	/**
 	 * Get the localised name to use as the name to display.
+	 *
 	 * @param block
 	 * @return
 	 */
 	public String getDisplayName(Block block) {
-		if (plugin.isItemsAdder() && ItemsAdder.isCustomCrop(block)) {
-			return ItemsAdder.getCustomBlock(block).getItemMeta().getDisplayName();
+		if (plugin.isItemsAdder() && CustomCrop.byAlreadyPlaced(block) != null) {
+			return CustomBlock.byAlreadyPlaced(block).getDisplayName();
 		}
 
 		Material crop = block.getType();
@@ -90,6 +92,7 @@ public class DataHandler {
 	/**
 	 * Attempt to pad the display string for the scoreboard if the crop name is shorter than the text,
 	 * so that the % sign is in the last char position.
+	 *
 	 * @param block
 	 * @return
 	 */
@@ -107,6 +110,7 @@ public class DataHandler {
 
 	/**
 	 * Get the growth stage of the crop as a percentage of the maximum age.
+	 *
 	 * @param bdata
 	 * @return
 	 */
