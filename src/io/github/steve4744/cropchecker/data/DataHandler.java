@@ -1,7 +1,7 @@
 /*
  * MIT License
 
-Copyright (c) 2019 steve4744
+Copyright (c) 2022 steve4744
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,8 +24,7 @@ SOFTWARE.
  */
 package io.github.steve4744.cropchecker.data;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.stream.Stream;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -64,17 +63,12 @@ public class DataHandler {
 		if (plugin.isItemsAdder() && CustomCrop.byAlreadyPlaced(block) != null) {
 			return CustomBlock.byAlreadyPlaced(block).getDisplayName();
 		}
+		String cropname = block.getType().toString().toLowerCase();
 
-		Material crop = block.getType();
-		String path = "crops.";
-		String cropname = crop.name().toLowerCase();
-		List<String> items = Arrays.asList("composter", "water_cauldron", "powder_snow_cauldron", "turtle_egg", "beehive", "bee_nest");
+		String path = Stream.of("composter", "water_cauldron", "powder_snow_cauldron", "turtle_egg", "beehive", "bee_nest")
+							.anyMatch(s -> cropname.equalsIgnoreCase(s)) ? "item." : "crops.";
 
-		if (items.stream().anyMatch(s -> cropname.equalsIgnoreCase(s))) {
-			path = "item.";
-		}
-
-		return cfg.getString(path + cropname, crop.name());
+		return cfg.getString(path + cropname, cropname);
 	}
 
 	private String getGrowthText() {
@@ -178,5 +172,15 @@ public class DataHandler {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * The berries on Sweet Berry Bushes and on Cave Vines are picked by right-clicking the block.
+	 *
+	 * @param block
+	 * @return true if the berries will be picked by a right-click.
+	 */
+	public boolean hasBerries(Block block) {
+		return (block.getType() == Material.SWEET_BERRY_BUSH || block.getType() == Material.CAVE_VINES);
 	}
 }

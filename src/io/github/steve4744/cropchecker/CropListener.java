@@ -52,6 +52,9 @@ public class CropListener implements Listener {
 			return;
 		}
 		Player player = event.getPlayer();
+		if (!plugin.getPlayerHandler().isCorrectClickType(player)) {
+			return;
+		}
 		if (!player.hasPermission("cropchecker.use")) {
 			return;
 		}
@@ -76,7 +79,10 @@ public class CropListener implements Listener {
 		}
 
 		plugin.getDisplayHandler().getVisualMethod(player, block, plugin.getDataHandler().getProgress(block));
-		event.setCancelled(true);
+		if (plugin.getDataHandler().hasBerries(block)) {
+			event.setCancelled(true);
+		}
+
 	}
 
 }
