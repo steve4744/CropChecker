@@ -4,15 +4,18 @@
 # Use any hoe to check growth progress of      #
 # crops, or the honey level of bee hives.      #
 # A specific tool can set in place of a hoe,   #
-# by enabling the override tool, and setting   #
-# the item. Set to AIR to use an empty hand.   #
+# by enabling the override tool and setting    #
+# the item.                                    #
 # Author: steve4744                            #
 ################################################
-# Check for new version
+
+# Check for new version.
 Check_For_Update: true
-# Number of seconds to display growth status (max 8)
+#
+# Number of seconds to display growth status (max 8).
 display_time: 3
-# Enable the preferred method(s) to display the block info
+#
+# Enable the preferred method(s) to display the crop info.
 Display:
   scoreboard:
     enabled: true
@@ -23,7 +26,14 @@ Display:
     enabled: false
     barcolor: GREEN
     textcolor: WHITE
-# Set a specific item to use instead of a hoe.
+#
+# Set a specific item to use instead of a hoe. Set the
+# item to AIR to use an empty hand.
 override_tool:
   enabled: false
   item: IRON_HOE
+#
+# Set how the player selects the crop/item.
+click_type:
+  right_click: true
+  shift_click: false

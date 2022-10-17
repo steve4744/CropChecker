@@ -50,4 +50,14 @@ public class PlayerHandler {
 		Material tool = Material.getMaterial(plugin.getConfig().getString("override_tool.item", "AIR").toUpperCase());
 		return tool == player.getInventory().getItemInMainHand().getType();
 	}
+
+	public boolean isCorrectClickType(Player player) {
+		if (player.isSneaking() && plugin.getConfig().getBoolean("click_type.shift_click")) {
+			return true;
+		}
+		if (!player.isSneaking() && plugin.getConfig().getBoolean("click_type.right_click")) {
+			return true;
+		}
+		return false;
+	}
 }
