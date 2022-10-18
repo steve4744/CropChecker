@@ -1,7 +1,7 @@
 /*
  * MIT License
 
-Copyright (c) 2019 steve4744
+Copyright (c) 2022 steve4744
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -74,11 +74,12 @@ public class CropListener implements Listener {
 			return;
 		}
 
-		if (plugin.getDataHandler().getDisplayName(block).isEmpty()) {
+		String displayName = plugin.getDataHandler().getDisplayName(block);
+		if (displayName.isEmpty()) {
 			return;
 		}
 
-		plugin.getDisplayHandler().getVisualMethod(player, block, plugin.getDataHandler().getProgress(block));
+		plugin.getDisplayHandler().getVisualMethod(player, displayName, plugin.getDataHandler().getProgress(block));
 		if (plugin.getDataHandler().hasBerries(block)) {
 			event.setCancelled(true);
 		}

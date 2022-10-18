@@ -57,7 +57,7 @@ public class DataHandler {
 	 * Get the localised name to use as the name to display.
 	 *
 	 * @param block
-	 * @return
+	 * @return string display name
 	 */
 	public String getDisplayName(Block block) {
 		if (plugin.isItemsAdder() && CustomCrop.byAlreadyPlaced(block) != null) {
@@ -87,15 +87,14 @@ public class DataHandler {
 	 * Attempt to pad the display string for the scoreboard if the crop name is shorter than the text,
 	 * so that the % sign is in the last char position.
 	 *
-	 * @param block
-	 * @return
+	 * @param display name
+	 * @return display name with trailing spaces added
 	 */
-	public String getPadding(Block block) {
-		String cropname = getDisplayName(block);
+	public String getPadding(String displayName) {
 		int padlen = 5;
 
-		if (cropname.length() < getText().length()) {
-			int mismatch = getText().length() - cropname.length();
+		if (displayName.length() < getText().length()) {
+			int mismatch = getText().length() - displayName.length();
 			//pad with extra 10 spaces for good measure
 			padlen += mismatch + 10;
 		}

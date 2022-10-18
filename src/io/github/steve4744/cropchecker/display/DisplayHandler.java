@@ -1,7 +1,7 @@
 /*
  * MIT License
 
-Copyright (c) 2019 steve4744
+Copyright (c) 2022 steve4744
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,6 @@ SOFTWARE.
  */
 package io.github.steve4744.cropchecker.display;
 
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import io.github.steve4744.cropchecker.CropChecker;
@@ -39,30 +38,32 @@ public class DisplayHandler {
 
 	/**
 	 * Get the enabled display option(s) for presenting the crop name and progress.
+	 *
 	 * @param player
 	 * @param block
 	 * @param progress
 	 */
-	public void getVisualMethod(Player player, Block block, Integer progress) {
+	public void getVisualMethod(Player player, String displayName, Integer progress) {
 		if (plugin.getConfiguration().isScoreboardEnabled()) {
-			plugin.getScoreboardManager().showProgress(player, block, progress);
+			plugin.getScoreboardManager().showProgress(player, displayName, progress);
 		}
 
 		if (plugin.getConfiguration().isActionBarEnabled()) {
-			String message = plugin.getDataHandler().getDisplayName(block) + " : " + progress + "%";
+			String message = displayName + " : " + progress + "%";
 			ActionBar actionbar = new ActionBar(message, plugin.getConfiguration().getActionBarColor());
 			actionbar.sendBar(player);
 		}
 
 		if (plugin.getConfiguration().isBossbarEnabled()) {
-			String message = plugin.getDataHandler().getDisplayName(block) + " : " + progress + "%";
+			String message = displayName + " : " + progress + "%";
 			BossbarManager bm = new BossbarManager(plugin);
 			bm.setBar(player, message, progress);
 		}
 	}
 
 	/**
-	 * The number of seconds between 1 and 8 (default 3) to display the on-screen info
+	 * The number of seconds between 1 and 8 (default 3) to display the on-screen info.
+	 *
 	 * @return number of seconds in ticks 
 	 */
 	public int getDisplayTime() {

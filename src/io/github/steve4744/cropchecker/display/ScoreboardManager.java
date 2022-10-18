@@ -1,7 +1,7 @@
 /*
  * MIT License
 
-Copyright (c) 2019 steve4744
+Copyright (c) 2022 steve4744
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,6 @@ import java.util.Map;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
@@ -56,7 +55,14 @@ public class ScoreboardManager {
 		this.dataHandler = plugin.getDataHandler();
 	}
 
-	public void showProgress(Player player, Block block, int progress) {
+	/**
+	 * Display the age of the crop on the scoreboard.
+	 *
+	 * @param player
+	 * @param displayName
+	 * @param progress
+	 */
+	public void showProgress(Player player, String displayName, int progress) {
 		//kill any previous scheduled tasks
 		cancelTask(player);
 		storeExternalScoreboard(player);
@@ -71,7 +77,7 @@ public class ScoreboardManager {
 		resetScoreboard(player);
 
 		Objective o = scoreboard.getObjective(DisplaySlot.SIDEBAR);
-		o.setDisplayName(ChatColor.GOLD.toString() + ChatColor.BOLD + dataHandler.getDisplayName(block) + ChatColor.WHITE + dataHandler.getPadding(block));
+		o.setDisplayName(ChatColor.GOLD.toString() + ChatColor.BOLD + displayName + ChatColor.WHITE + dataHandler.getPadding(displayName));
 		o.getScore(dataHandler.getText() + ":").setScore(progress);
 		player.setScoreboard(scoreboard);
 
