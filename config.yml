@@ -1,13 +1,13 @@
-################################################
-# Crop Checker configuration file              #
-#                                              #
-# Use any hoe to check growth progress of      #
-# crops, or the honey level of bee hives.      #
-# A specific tool can set in place of a hoe,   #
-# by enabling the override tool and setting    #
-# the item.                                    #
-# Author: steve4744                            #
-################################################
+############################################## #
+# Crop Checker configuration file               #
+#                                               #
+# Use any hoe to check the growth progress of   #
+# crops, or the honey level of bee hives.       #
+# A specific tool can be set in place of a hoe  #
+# by enabling the override tool and setting     #
+# the item.                                     #
+# Author: steve4744                             #
+############################################## #
 
 # Check for new version.
 Check_For_Update: true
