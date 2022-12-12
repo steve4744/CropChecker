@@ -104,13 +104,19 @@ public class DataHandler {
 	/**
 	 * Get the growth stage of the crop as a percentage of the maximum age.
 	 *
-	 * @param bdata
-	 * @return
+	 * @param block
+	 * @return int percentage growth progress
 	 */
 	public int getProgress(Block block) {
+		if (plugin.isItemsAdder()) {
+			CustomCrop customCrop = CustomCrop.byAlreadyPlaced(block);
+			if (customCrop != null) {
+				 return customCrop.getAge() * 100 / customCrop.getMaxAge();
+			}
+		}
+
 		int progress = 0;
 		BlockData bdata = block.getBlockData();
-
 		if (bdata instanceof Ageable) {
 			Ageable age = (Ageable) bdata;
 			progress = age.getAge() * 100 / age.getMaximumAge();
@@ -126,7 +132,7 @@ public class DataHandler {
 
 		} else if (bdata instanceof TurtleEgg) {
 			TurtleEgg turtleEgg = (TurtleEgg) bdata;
-			progress = turtleEgg.getHatch() *100 / turtleEgg.getMaximumHatch();
+			progress = turtleEgg.getHatch() * 100 / turtleEgg.getMaximumHatch();
 			text = getGrowthText();
 
 		} else if (bdata instanceof Beehive) {
