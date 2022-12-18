@@ -34,16 +34,19 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import com.google.common.base.Enums;
 
 import io.github.steve4744.cropchecker.CropChecker;
+import io.github.steve4744.cropchecker.utils.Utils;
 
 public class Configuration {
 
 	private File stringFile, dataFolder;
 	private FileConfiguration stringData;
 	private final CropChecker plugin;
+	private String actionBarColour;
 
 	public Configuration(CropChecker plugin) {
 
 		this.plugin = plugin;
+		loadActionBarColour();
 		dataFolder = plugin.getDataFolder();
 		stringFile = new File(dataFolder, "strings.yml");
 		stringData = new YamlConfiguration();
@@ -61,7 +64,7 @@ public class Configuration {
 		saveStrings();
 	}
 
-	public void reloadStrings() {
+	private void reloadStrings() {
 		try {
 			stringData.load(stringFile);
 
@@ -69,6 +72,11 @@ public class Configuration {
 			plugin.getLogger().info("Failed loading config: " + ex.getMessage());
 			ex.printStackTrace();
 		}
+	}
+
+	public void reload() {
+		loadActionBarColour();
+		reloadStrings();
 	}
 
 	public FileConfiguration getStringData() {
@@ -129,12 +137,17 @@ public class Configuration {
 		return plugin.getConfig().getBoolean("Display.bossbar.enabled", true);
 	}
 
-	public String getActionBarColor() {
-		String colour = plugin.getConfig().getString("Display.actionbar.textcolor").toUpperCase();
-		if (colour == null || Enums.getIfPresent(ChatColor.class, colour).orNull() == null) {
-			colour = "WHITE";
+	private void loadActionBarColour() {
+		String colour = plugin.getConfig().getString("Display.actionbar.textcolor", "WHITE").toUpperCase();
+		if (Enums.getIfPresent(ChatColor.class, colour).orNull() != null) {
+			actionBarColour = ChatColor.valueOf(colour).toString();
+			return;
 		}
-		return colour;
+		actionBarColour = Utils.translateColourCodes(colour);
+	}
+
+	public String getActionBarColor() {
+		return actionBarColour;
 	}
 
 	public String getBossbarColor() {
@@ -151,6 +164,19 @@ public class Configuration {
 			colour = "WHITE";
 		}
 		return colour;
+	}
+
+	/**
+	 * The number of seconds between 1 and 8 (default 3) to display the on-screen info.
+	 *
+	 * @return number of ticks
+	 */
+	public int getDisplayTime() {
+		int seconds = plugin.getConfig().getInt("display_time", 3);
+		if (seconds < 1 || seconds > 8) {
+			seconds = 3;
+		}
+		return seconds * 20;
 	}
 
 }

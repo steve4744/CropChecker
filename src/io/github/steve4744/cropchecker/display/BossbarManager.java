@@ -80,7 +80,7 @@ public class BossbarManager {
 			@Override public void run() {
 				removePlayerFromBar(player);
 			}
-		}.runTaskLater(plugin, plugin.getDisplayHandler().getDisplayTime());
+		}.runTaskLater(plugin, plugin.getConfiguration().getDisplayTime());
 		taskmap.put(player.getName(), task);
 	}
 

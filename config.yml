@@ -21,6 +21,9 @@ Display:
     enabled: true
   actionbar:
     enabled: false
+    # text colour supports hex/rgb colour codes, default is WHITE
+    #textcolor: <#ff00e0>
+    #textcolor: '&b'
     textcolor: WHITE
   bossbar:
     enabled: false

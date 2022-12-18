@@ -87,7 +87,7 @@ public class ScoreboardManager {
 				resetScoreboard(player);
 				restoreExternalScoreboard(player);
 			}
-		}.runTaskLater(plugin, plugin.getDisplayHandler().getDisplayTime());
+		}.runTaskLater(plugin, plugin.getConfiguration().getDisplayTime());
 		taskMap.put(player.getName(), task);
 	}
 

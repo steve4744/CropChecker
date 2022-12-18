@@ -22,24 +22,26 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
  */
-package io.github.steve4744.cropchecker.display;
+package io.github.steve4744.cropchecker.utils;
 
-import org.bukkit.entity.Player;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.ChatColor;
 
-public class ActionBar {
+public class Utils {
 
-	private BaseComponent[] bc;
+	private final static Pattern HEXCOLOUR = Pattern.compile("<#([A-Fa-f0-9]){6}>");
 
-	public ActionBar(String message) {
-		bc = TextComponent.fromLegacyText(message);
+	public static String translateColourCodes(String message) {
+		Matcher matcher = HEXCOLOUR.matcher(message);
+		while (matcher.find()) {
+			StringBuilder sb = new StringBuilder();
+			final ChatColor hexColour = ChatColor.of(matcher.group().substring(1, matcher.group().length() - 1));
+			sb.append(message.substring(0, matcher.start())).append(hexColour).append(message.substring(matcher.end()));
+			message = sb.toString();
+			matcher = HEXCOLOUR.matcher(message);
+		}
+		return ChatColor.translateAlternateColorCodes('&', message);
 	}
-
-	public void sendBar(Player player) {
-		player.spigot().sendMessage(ChatMessageType.ACTION_BAR, bc);
-	}
-
 }

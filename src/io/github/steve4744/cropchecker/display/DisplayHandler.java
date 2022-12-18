@@ -50,7 +50,7 @@ public class DisplayHandler {
 
 		if (plugin.getConfiguration().isActionBarEnabled()) {
 			String message = displayName + " : " + progress + "%";
-			ActionBar actionbar = new ActionBar(message, plugin.getConfiguration().getActionBarColor());
+			ActionBar actionbar = new ActionBar(plugin.getConfiguration().getActionBarColor() + message);
 			actionbar.sendBar(player);
 		}
 
@@ -59,18 +59,5 @@ public class DisplayHandler {
 			BossbarManager bm = new BossbarManager(plugin);
 			bm.setBar(player, message, progress);
 		}
-	}
-
-	/**
-	 * The number of seconds between 1 and 8 (default 3) to display the on-screen info.
-	 *
-	 * @return number of seconds in ticks 
-	 */
-	public int getDisplayTime() {
-		int seconds = plugin.getConfig().getInt("display_time", 3);
-		if (seconds < 1 || seconds > 8) {
-			seconds = 3;
-		}
-		return seconds * 20;
 	}
 }
