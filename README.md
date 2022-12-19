@@ -2,13 +2,9 @@
 
 ![beetroots](https://user-images.githubusercontent.com/6975392/145026806-d5823ef7-3fd6-48be-9a3b-b6fca6650196.png "CropChecker by steve4744")
 
-Crop Checker is a simple utility plugin for Spigot/Minecraft 1.13.2 to 1.19.2. Well suited to Survival and Skyblock servers, it will allow players to display the growth status of any of their crops, as well as the status of other items, such as the honey level of bee hives.
+Crop Checker is a simple utility plugin for Spigot/Minecraft 1.13.2 to 1.19.3. Well suited to Survival and Skyblock servers, it will allow players to display the growth status of any of their crops, as well as the status of other items, such as the honey level of bee hives and the bonemeal level of composters.
 
 Simply by right-clicking the crop or item with a hoe, it will briefly display on screen the name and age of the crop. The age is shown as a percentage from 0% (growth not started) to 100% (fully grown). The name of the crop or item displayed can be set or translated to any language in 'strings.yml'.
-
-From Spigot/Minecraft 1.17, you can right-click a Water_Cauldron or Powder_Snow_Cauldron to display its level.<br>
-From Spigot/Minecraft 1.15, you can right-click a Beehive or Bee_Nest to display its honey level.<br>
-From Spigot/Minecraft 1.14, you can right-click the Composter to display its bonemeal level.
 
 By default, the information is displayed for 3 seconds on a small Scoreboard on the right-hand side of the screen. If you prefer, the information can be displayed on a BossBar, using the bar to visually display progress. The bar colour, text colour and display time are all configurable in the 'config.yml' file.
 
@@ -18,7 +14,7 @@ To use a specific item for right-clicking the crop or beehive, then an 'override
 
 
 ## Dependencies
-The latest version of this plugin requires Java 17 and is only supported on Spigot/Minecraft 1.17.1 to 1.19.2.<br>
+The latest version of this plugin requires Java 17 and is only supported on Spigot/Minecraft 1.17.1 to 1.19.3.<br>
 For other versions of Spigot/Minecraft, refer to the download list below.
 
 No other plugins are required.
@@ -50,4 +46,4 @@ __/cropchecker reload__ reload the config file (requires cropchecker.admin permi
     (Optional) Translate the crop names into your desired language by editing 'strings.yml'
 
 
-Updated 18 October 2022 by steve4744
+Updated 19 December 2022 by steve4744
