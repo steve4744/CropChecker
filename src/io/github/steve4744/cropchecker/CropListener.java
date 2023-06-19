@@ -27,10 +27,10 @@ package io.github.steve4744.cropchecker;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Hatchable;
 import org.bukkit.block.data.Levelled;
 import org.bukkit.block.data.type.Beehive;
 import org.bukkit.block.data.type.Sapling;
-import org.bukkit.block.data.type.TurtleEgg;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -70,7 +70,8 @@ public class CropListener implements Listener {
 			event.setCancelled(true);
 			return;
 		}
-		if (!(bdata instanceof Ageable || bdata instanceof Levelled || bdata instanceof TurtleEgg || bdata instanceof Beehive || bdata instanceof Sapling)) {
+		if (!(bdata instanceof Ageable || bdata instanceof Levelled || bdata instanceof Hatchable
+				|| bdata instanceof Beehive || bdata instanceof Sapling)) {
 			return;
 		}
 

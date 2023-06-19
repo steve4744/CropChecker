@@ -31,11 +31,11 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Hatchable;
 import org.bukkit.block.data.Levelled;
 import org.bukkit.block.data.type.Beehive;
 import org.bukkit.block.data.type.CaveVinesPlant;
 import org.bukkit.block.data.type.Sapling;
-import org.bukkit.block.data.type.TurtleEgg;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import dev.lone.itemsadder.api.CustomBlock;
@@ -65,7 +65,7 @@ public class DataHandler {
 		}
 		String cropname = block.getType().toString().toLowerCase();
 
-		String path = Stream.of("composter", "water_cauldron", "powder_snow_cauldron", "turtle_egg", "beehive", "bee_nest")
+		String path = Stream.of("composter", "water_cauldron", "powder_snow_cauldron", "turtle_egg", "sniffer_egg", "beehive", "bee_nest")
 							.anyMatch(s -> cropname.equalsIgnoreCase(s)) ? "item." : "crops.";
 
 		return cfg.getString(path + cropname, cropname);
@@ -130,9 +130,9 @@ public class DataHandler {
 			progress = levelled.getLevel() * 100 / levelled.getMaximumLevel();
 			text = getLevelText();
 
-		} else if (bdata instanceof TurtleEgg) {
-			TurtleEgg turtleEgg = (TurtleEgg) bdata;
-			progress = turtleEgg.getHatch() * 100 / turtleEgg.getMaximumHatch();
+		} else if (bdata instanceof Hatchable) {
+			Hatchable hatchable = (Hatchable) bdata;
+			progress = hatchable.getHatch() * 100 / hatchable.getMaximumHatch();
 			text = getGrowthText();
 
 		} else if (bdata instanceof Beehive) {
