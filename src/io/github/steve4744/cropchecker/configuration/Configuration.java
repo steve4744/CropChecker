@@ -1,7 +1,7 @@
 /*
  * MIT License
 
-Copyright (c) 2022 steve4744
+Copyright (c) 2023 steve4744
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -42,11 +42,14 @@ public class Configuration {
 	private FileConfiguration stringData;
 	private final CropChecker plugin;
 	private String actionBarColour;
+	private String scoreboardColour;
+	private String scoreboardPercentColour;
 
 	public Configuration(CropChecker plugin) {
 
 		this.plugin = plugin;
 		loadActionBarColour();
+		loadScoreboardColours();
 		dataFolder = plugin.getDataFolder();
 		stringFile = new File(dataFolder, "strings.yml");
 		stringData = new YamlConfiguration();
@@ -76,6 +79,7 @@ public class Configuration {
 
 	public void reload() {
 		loadActionBarColour();
+		loadScoreboardColours();
 		reloadStrings();
 	}
 
@@ -118,8 +122,8 @@ public class Configuration {
 			stringData.addDefault("item.sniffer_egg", "Sniffer_Egg");
 			stringData.addDefault("item.bee_nest", "Bee_Nest");
 			stringData.addDefault("item.beehive", "Beehive");
-			stringData.addDefault("text.level", "Level");
-			stringData.addDefault("text.growth", "Growth");
+			stringData.addDefault("text.level", "&fLevel");
+			stringData.addDefault("text.growth", "&fGrowth");
 			stringData.options().copyDefaults(true);
 			stringData.save(stringFile);
 			reloadStrings();
@@ -151,6 +155,30 @@ public class Configuration {
 
 	public String getActionBarColor() {
 		return actionBarColour;
+	}
+
+	private void loadScoreboardColours() {
+		String colour = plugin.getConfig().getString("Display.scoreboard.color.cropname", "GOLD").toUpperCase();
+		if (Enums.getIfPresent(ChatColor.class, colour).orNull() != null) {
+			scoreboardColour = ChatColor.valueOf(colour).toString();
+		} else {
+			scoreboardColour = Utils.translateColourCodes(colour);
+		}
+
+		String percent = plugin.getConfig().getString("Display.scoreboard.color.symbol", "WHITE").toUpperCase();
+		if (Enums.getIfPresent(ChatColor.class, percent).orNull() != null) {
+			scoreboardPercentColour = ChatColor.valueOf(percent).toString();
+		} else {
+			scoreboardPercentColour = Utils.translateColourCodes(percent);
+		}
+	}
+
+	public String getScoreboardColour() {
+		return scoreboardColour;
+	}
+
+	public String getScoreboardPercentColour() {
+		return scoreboardPercentColour;
 	}
 
 	public String getBossbarColor() {

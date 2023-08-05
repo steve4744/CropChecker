@@ -19,6 +19,13 @@ display_time: 3
 Display:
   scoreboard:
     enabled: true
+    # The crop name and percent symbol (%) support hex/rgb colour codes as
+    # well as Bukkit colour codes, e.g.
+    # cropname: <#ff00e0>
+    # symbol: '&b'
+    color:
+      cropname: GOLD
+      symbol: WHITE
   actionbar:
     enabled: false
     # text colour supports hex/rgb colour codes, default is WHITE

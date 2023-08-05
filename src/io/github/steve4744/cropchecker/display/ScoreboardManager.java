@@ -1,7 +1,7 @@
 /*
  * MIT License
 
-Copyright (c) 2022 steve4744
+Copyright (c) 2023 steve4744
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
@@ -39,6 +38,7 @@ import org.bukkit.scoreboard.Scoreboard;
 
 import io.github.steve4744.cropchecker.CropChecker;
 import io.github.steve4744.cropchecker.data.DataHandler;
+import io.github.steve4744.cropchecker.utils.Utils;
 
 public class ScoreboardManager {
 
@@ -77,8 +77,11 @@ public class ScoreboardManager {
 		resetScoreboard(player);
 
 		Objective o = scoreboard.getObjective(DisplaySlot.SIDEBAR);
-		o.setDisplayName(ChatColor.GOLD.toString() + ChatColor.BOLD + displayName + ChatColor.WHITE + dataHandler.getPadding(displayName));
-		o.getScore(dataHandler.getText() + ":").setScore(progress);
+
+		o.setDisplayName(plugin.getConfiguration().getScoreboardColour() + displayName +
+				plugin.getConfiguration().getScoreboardPercentColour() + dataHandler.getPadding(displayName));
+
+		o.getScore(Utils.translateColourCodes(dataHandler.getText() + ":")).setScore(progress);
 		player.setScoreboard(scoreboard);
 
 		BukkitTask task = new BukkitRunnable() {
