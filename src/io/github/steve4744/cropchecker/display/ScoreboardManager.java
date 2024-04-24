@@ -32,6 +32,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
+import org.bukkit.scoreboard.Criteria;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
@@ -96,7 +97,7 @@ public class ScoreboardManager {
 
 	private Scoreboard buildScoreboard() {
 		scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
-		Objective o = scoreboard.registerNewObjective("CropChecker", "showgrowth", "CropChecker");
+		Objective o = scoreboard.registerNewObjective("CropChecker", Criteria.DUMMY, "CropChecker");
 		o.setDisplaySlot(DisplaySlot.SIDEBAR);
 		return scoreboard;
 	}
