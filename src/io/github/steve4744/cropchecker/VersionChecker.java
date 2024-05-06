@@ -1,7 +1,7 @@
 /*
  * MIT License
 
-Copyright (c) 2019 steve4744
+Copyright (c) 2024 steve4744
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,29 +24,35 @@ SOFTWARE.
  */
 package io.github.steve4744.cropchecker;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Scanner;
+import java.util.function.Consumer;
 
 import org.bukkit.Bukkit;
 
 public class VersionChecker {
 
-	public static String getVersion() {
-		try {
-			HttpURLConnection con = (HttpURLConnection) new URL("https://api.spigotmc.org/legacy/update.php?resource=64044").openConnection();
-			con.setDoOutput(true);
-			con.setRequestMethod("GET");
-			String version = new BufferedReader(new InputStreamReader(con.getInputStream())).readLine();
-			con.disconnect();
-			if (version.length() <= 7) {
-				return version;
-			}
-		} catch (Exception ex) {
-			Bukkit.getLogger().info("[CropChecker] Failed to check for an update on Spigot.");
-		}
-		return "error";
+	private CropChecker plugin;
+	private int resourceId;
+
+	public VersionChecker(CropChecker plugin, int resourceId) {
+		this.plugin = plugin;
+		this.resourceId = resourceId;
 	}
 
+	public void getVersion(final Consumer<String> consumer) {
+		Bukkit.getScheduler().runTaskLaterAsynchronously(this.plugin, () -> {
+			try (InputStream is = new URI("https://api.spigotmc.org/legacy/update.php?resource=" + this.resourceId + "/~").toURL().openStream();
+					Scanner scann = new Scanner(is)) {
+				if (scann.hasNext()) {
+					consumer.accept(scann.next());
+				}
+			} catch (IOException | URISyntaxException e) {
+				plugin.getLogger().info("Unable to check for update: " + e.getMessage());
+			}
+		}, 30L);
+	}
 }

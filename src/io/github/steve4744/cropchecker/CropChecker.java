@@ -1,7 +1,7 @@
 /*
  * MIT License
 
-Copyright (c) 2023 steve4744
+Copyright (c) 2024 steve4744
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -28,8 +28,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
-
 import io.github.steve4744.cropchecker.configuration.Configuration;
 import io.github.steve4744.cropchecker.data.DataHandler;
 import io.github.steve4744.cropchecker.display.DisplayHandler;
@@ -45,6 +43,7 @@ public class CropChecker extends JavaPlugin {
 	private DisplayHandler displayHandler;
 	private PlayerHandler playerHandler;
 	private boolean itemsadder;
+	private static final int SPIGOT_ID = 64044;
 	private static final int BSTATS_PLUGIN_ID = 3901;
 
 	@Override
@@ -112,19 +111,15 @@ public class CropChecker extends JavaPlugin {
 		if (!getConfig().getBoolean("Check_For_Update", true)) {
 			return;
 		}
-		new BukkitRunnable() {
-			@Override
-			public void run() {
-				String latestVersion = VersionChecker.getVersion();
-				if (latestVersion == "error") {
-					getLogger().info("Error attempting to check for new version. Please report it here: https://www.spigotmc.org/threads/cropchecker-check-crop-growth-progress.355898/");
-				} else {
-					if (!version.equals(latestVersion)) {
-						getLogger().info("New version " + latestVersion + " available on Spigot: https://www.spigotmc.org/resources/cropchecker-check-crop-growth-progress.64044/");
-					}
-				}
+		new VersionChecker(this, SPIGOT_ID).getVersion(latestVersion -> {
+			if (version.equals(latestVersion)) {
+				getLogger().info("You are running the most recent version");
+			} else if (Character.isDigit(latestVersion.charAt(0))) {
+				getLogger().info("Current version: " + version);
+				getLogger().info("Latest release: " + latestVersion);
+				getLogger().info("Latest release available from Spigot: https://www.spigotmc.org/resources/CropChecker." + SPIGOT_ID + "/");
 			}
-		}.runTaskLaterAsynchronously(this, 20L);
+		});
 	}
 
 	public void reloadPlugin() {
