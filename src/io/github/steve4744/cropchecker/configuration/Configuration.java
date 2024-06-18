@@ -122,6 +122,7 @@ public class Configuration {
 			stringData.addDefault("item.sniffer_egg", "Sniffer_Egg");
 			stringData.addDefault("item.bee_nest", "Bee_Nest");
 			stringData.addDefault("item.beehive", "Beehive");
+			stringData.addDefault("item.chiseled_bookshelf", "Chiseled_Bookshelf");
 			stringData.addDefault("text.level", "&fLevel");
 			stringData.addDefault("text.growth", "&fGrowth");
 			stringData.options().copyDefaults(true);

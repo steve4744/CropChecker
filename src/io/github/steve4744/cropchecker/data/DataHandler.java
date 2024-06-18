@@ -1,7 +1,7 @@
 /*
  * MIT License
 
-Copyright (c) 2023 steve4744
+Copyright (c) 2024 steve4744
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,8 +24,7 @@ SOFTWARE.
  */
 package io.github.steve4744.cropchecker.data;
 
-import java.util.stream.Stream;
-
+import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -35,6 +34,7 @@ import org.bukkit.block.data.Hatchable;
 import org.bukkit.block.data.Levelled;
 import org.bukkit.block.data.type.Beehive;
 import org.bukkit.block.data.type.CaveVinesPlant;
+import org.bukkit.block.data.type.ChiseledBookshelf;
 import org.bukkit.block.data.type.Sapling;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -47,6 +47,8 @@ public class DataHandler {
 	private String text;
 	private FileConfiguration cfg;
 	private CropChecker plugin;
+	private static List<String> items = List.of("composter", "water_cauldron", "powder_snow_cauldron",
+			"turtle_egg", "sniffer_egg", "beehive", "bee_nest", "chiseled_bookshelf");
 
 	public DataHandler(CropChecker plugin) {
 		cfg = plugin.getConfiguration().getStringData();
@@ -65,8 +67,7 @@ public class DataHandler {
 		}
 		String cropname = block.getType().toString().toLowerCase();
 
-		String path = Stream.of("composter", "water_cauldron", "powder_snow_cauldron", "turtle_egg", "sniffer_egg", "beehive", "bee_nest")
-							.anyMatch(s -> cropname.equalsIgnoreCase(s)) ? "item." : "crops.";
+		String path = items.stream().anyMatch(s -> cropname.equalsIgnoreCase(s)) ? "item." : "crops.";
 
 		return cfg.getString(path + cropname, cropname);
 	}
@@ -144,6 +145,11 @@ public class DataHandler {
 			Sapling sapling = (Sapling) bdata;
 			progress = sapling.getStage() * 100 / sapling.getMaximumStage();
 			text = getGrowthText();
+
+		} else if (bdata instanceof ChiseledBookshelf) {
+			ChiseledBookshelf shelf = (ChiseledBookshelf) bdata;
+			progress = shelf.getOccupiedSlots().size() * 100 / shelf.getMaximumOccupiedSlots();
+			text = getLevelText();
 		}
 
 		return progress;

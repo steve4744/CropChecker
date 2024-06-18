@@ -30,6 +30,7 @@ import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Hatchable;
 import org.bukkit.block.data.Levelled;
 import org.bukkit.block.data.type.Beehive;
+import org.bukkit.block.data.type.ChiseledBookshelf;
 import org.bukkit.block.data.type.Sapling;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -71,7 +72,7 @@ public class CropListener implements Listener {
 			return;
 		}
 		if (!(bdata instanceof Ageable || bdata instanceof Levelled || bdata instanceof Hatchable
-				|| bdata instanceof Beehive || bdata instanceof Sapling)) {
+				|| bdata instanceof Beehive || bdata instanceof Sapling || bdata instanceof ChiseledBookshelf)) {
 			return;
 		}
 
