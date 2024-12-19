@@ -108,6 +108,7 @@ public class Configuration {
 			stringData.addDefault("crops.dark_oak_sapling", "Dark_Oak_Sapling");
 			stringData.addDefault("crops.jungle_sapling", "Jungle_Sapling");
 			stringData.addDefault("crops.oak_sapling", "Oak_Sapling");
+			stringData.addDefault("crops.pale_oak_sapling", "Pale_Oak_Sapling");
 			stringData.addDefault("crops.spruce_sapling", "Spruce_Sapling");
 			stringData.addDefault("crops.mangrove_propagule", "Mangrove_Propagule");
 			stringData.addDefault("crops.twisting_vines", "Twisting_Vines");
