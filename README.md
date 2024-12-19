@@ -14,7 +14,7 @@ To use a specific item for right-clicking the crop or beehive, then an 'override
 
 
 ## Dependencies
-The latest version of this plugin requires Java 21 and is supported on Spigot/Minecraft 1.21.3 - 1.21-4.
+The latest version of this plugin requires Java 21 and is supported on Spigot/Minecraft 1.20.6 - 1.21-4.
 
 For other versions of Spigot/Minecraft, refer to the download list below.
 
@@ -22,9 +22,7 @@ No other plugins are required.
 
 
 ## Download
-For Minecraft 1.21.3 - 1.21.4, CropChecker can be [downloaded from Spigot](https://www.spigotmc.org/resources/cropchecker-check-crop-growth-progress.64044/ "CropChecker by steve4744")
-
-For Minecraft 1.20.6 - 1.21.1, download version 3.6 [from Spigot](https://www.spigotmc.org/resources/cropchecker-check-crop-growth-progress-honey-levels.64044/download?version=545590 "CropChecker v3.6")
+For Minecraft 1.20.6 - 1.21.4, CropChecker can be [downloaded from Spigot](https://www.spigotmc.org/resources/cropchecker-check-crop-growth-progress.64044/ "CropChecker by steve4744")
 
 For Minecraft 1.20.4, download version 3.5 [from Spigot](https://www.spigotmc.org/resources/cropchecker-check-crop-growth-progress-honey-levels.64044/download?version=501538 "CropChecker v3.5")
 
